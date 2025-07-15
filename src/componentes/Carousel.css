@@ -1,0 +1,72 @@
+.div_promocional {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    background-color: #DC995E;
+}
+
+.primeira_compra {
+    font-size: 14px;
+    line-height: 21px;
+    padding-right:3%;
+
+    color: #FFFFFF;
+}
+
+.reais_off {
+    font-size: 14px;
+    line-height: 21px;
+    padding-right:3%;
+
+    color: #222222;
+}
+
+.botao_primeira_25 {
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+
+    font-size: 14px;
+    line-height: 21px;
+    cursor: pointer;
+
+    color: #222222;
+}
+
+#div_carousel {
+    overflow: hidden; /* necessário? */
+    margin-left: 10%;
+    margin-right: 10%;
+    align-items: center;
+}
+
+#div_wrapper_carousel {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    list-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+.botao_carousel_anterior {
+    position: absolute;
+    bottom: 50%;
+    left: 15%;
+    border: none;
+    background-color: transparent;
+    z-index: 127;
+    cursor: pointer;
+}
+
+.botao_carousel_proximo {
+    position: absolute;
+    bottom: 50%;
+    right: 15%;
+    border: none;
+    background-color: transparent;
+    z-index: 127;
+    cursor: pointer;
+}
