@@ -1,9 +1,10 @@
 import './FooterLink.css';
 import PropsLinkFooter from '../types/PropsFooterLink';
+import { Link } from 'react-router-dom';
 
 export default function FooterLink(props: PropsLinkFooter) {
   return (<div>
-    <button className='fonte_normal footer_link'>{props.link.texto}</button>
+    <Link to={props.link.endereco} className='fonte_normal footer_link'>{props.link.texto}</Link>
     <ul className='lista_topicos'>
       {
         [

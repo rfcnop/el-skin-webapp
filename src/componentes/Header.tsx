@@ -1,6 +1,7 @@
 import './Header.css';
 import lupa from '../assets/lupa.svg';
 import sacola from '../assets/sacola.svg';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Header() {
@@ -28,9 +29,9 @@ export default function Header() {
     <header>
       <div className="margem_10 padding_1 div_header">
         <div className="div_barra_superior">
-          <div className="div_logo">
+          <Link className="link_logo" to=''>
             AL SKIN
-          </div>
+          </Link>
           <form onSubmit={onClickSearch} className="div_barra_de_pesquisa">
             <div className="div_input">
               <input

@@ -1,0 +1,64 @@
+.div_sobre {
+    background-color: #FFF;
+}
+
+.div_top_sobre {
+    display: flex;
+}
+
+.div_titulo {
+    font-size: 20px;
+    line-height: 30px;
+    text-align: left;
+    color: #000000;
+}
+
+.div_textao {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+    color: #000000;
+}
+
+#div_left {
+    width: 40%;
+}
+
+#div_right {
+    width: 60%;
+}
+
+#div_link_fale_conosco {
+    display: flex;
+    justify-content: center;
+}
+
+#link_fale_conosco {
+    background: #94426E;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.texto_fale_conosco {
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.img_outras {
+    max-width: stretch;
+}
+
+#img_dente {
+    width: 100%;
+}

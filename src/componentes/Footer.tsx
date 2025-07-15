@@ -1,6 +1,7 @@
 import './Footer.css';
 import footerLinks from '../data/footerLinks.json';
 import FooterLink from './FooterLink';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const redes_sociais = ['instagram', 'facebook', 'youtube', 'pintrest', 'twitter', 'linkedin', 'spotify'];
@@ -15,7 +16,7 @@ export default function Footer() {
             {
               [
                 redes_sociais.map(
-                  (rede, index) => <button className='link_share' key={index}><img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} /></button>
+                  (rede, index) => <Link className='link_share' to='/share' key={index}><img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} /></Link>
                 )
               ]
             }
