@@ -1,0 +1,43 @@
+[
+    {
+        "link": {
+            "texto": "Sobre a AL SKIN",
+            "endereco": "/sobre"
+        },
+        "topicos": [
+            "quem somos",
+            "time AL SKIN",
+            "carreiras"
+        ]
+    },
+    {
+        "link": {
+            "texto": "Loja AL SKIN",
+            "endereco": "/"
+        },
+        "topicos": [
+            "lojas físicas",
+            "devolução"
+        ]
+    },
+    {
+        "link": {
+            "texto": "Atendimento",
+            "endereco": "/faleconosco"
+        },
+        "topicos": [
+            "oi@alskin.com.br",
+            "ajuda"
+        ]
+    },
+    {
+        "link": {
+            "texto": "Blog AL SKIN",
+            "endereco": "/blog"
+        },
+        "topicos": [
+            "Minha pele",
+            "Ingredientes"
+        ]
+    }
+]
