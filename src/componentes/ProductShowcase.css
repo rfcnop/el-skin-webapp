@@ -1,0 +1,21 @@
+.div_showcase {
+    background-color: #FFF;
+}
+
+.div_titulo_showcase{
+    font-size: 20px;
+    line-height: 30px;
+
+    text-align: center;
+    text-transform: lowercase;
+    
+    color: #000000;
+}
+
+.div_lista_de_produtos {
+    display: grid;
+    grid: repeat(2, 500px) / auto-flow 27%;
+
+    justify-content: space-between;
+
+}

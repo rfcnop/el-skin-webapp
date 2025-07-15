@@ -1,12 +1,11 @@
 import Carousel from '../componentes/Carousel';
-import ProductCard from '../componentes/ProductCard';
-import products from '../data/products.json';
+import ProductShowcase from '../componentes/ProductShowcase';
 
 export default function Home() {
   return (
     <main>
       <Carousel />
-      <ProductCard {...products[0]} />
+      <ProductShowcase />
     </main>
   );
 }
