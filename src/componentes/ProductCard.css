@@ -1,0 +1,77 @@
+.div_card {
+    width: 60%;
+}
+
+.img_produto {
+    cursor: pointer;
+}
+
+.div_nome {
+    font-size: 20px;
+    line-height: 30px;
+
+    color: #222222;
+    cursor: pointer;
+}
+
+.div_descricao {
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #878787;
+}
+
+.tag_produto {
+    width: 91px;
+    border: none;
+    margin-right: 5px;
+
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: lowercase;
+
+    border-radius: 8px;
+
+    color: #FFFFFF;
+
+    transform: rotate(0.25deg);
+}
+
+.div_preco_comprar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 215px;
+}
+
+.preco_produto {
+    font-size: 20px;
+    line-height: 30px;
+
+    color: #222222;
+}
+
+.botao_comprar {
+    display: flex;
+    font-size: 20px;
+    line-height: 30px;
+    border: none;
+    text-transform: lowercase;
+
+    color: #FFFFFF;
+    background-color: #7045F5;
+    border-radius: 8px;
+    transform: rotate(0.25deg);
+    cursor: pointer;
+}
+
+#div_comprar {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#sacola {
+    margin-top: 3px;
+    float: right;
+}

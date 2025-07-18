@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if npm run lint ; then
+	cat <<EOF
+ESLint aprovou.
+EOF
+else 
+	cat <<EOF
+Erro: Commit não criado pois ESLint não aprovou.
+EOF
+	exit 1
+fi

@@ -1,0 +1,121 @@
+.div_item_carousel {
+    width: 100%; /* necessário? */
+    height: 100%; /* necessário? */
+    flex: 1 0 100%;
+}
+
+.div_imagem_carrossel {
+    width: 80vw;
+    aspect-ratio: 2.11;
+    background-size: cover;
+    display: flex;
+}
+
+.div_info_na_imagem {
+    position: relative;
+    top: 5%;
+    left: 5%;
+    width: 330px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.subtitulo_carrossel {
+    font-size: 24px;
+    line-height: 36px;
+
+    text-align: center;
+    text-transform: lowercase;
+
+    color: #94426E;
+}
+
+.titulo_carrossel {
+    font-size: 48px;
+    line-height: 62px;
+
+    text-align: center;
+    text-transform: lowercase;
+
+    color: #94426E;
+}
+
+.descricao_carrossel {
+    font-size: 16px;
+    line-height: 24px;
+
+    text-align: center;
+    text-transform: lowercase;
+
+    color: #94426E;
+}
+
+.desconto {
+    background: #DC5E5E;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: lowercase;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    color: #FFFFFF;
+
+    transform: rotate(0.25deg);
+    width: 140px;
+}
+
+.use_o_cupom {
+    font-size: 16px;
+    line-height: 24px;
+
+    text-align: center;
+
+    color: #94426E;
+}
+
+.nome_cupom {
+    box-sizing: border-box;
+
+    border: 1px dashed #94426E;
+
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    color: #94426E;
+}
+
+.comprar_carrossel {
+    background: #7045F5;
+    border-radius: 8px;
+    border: none;
+
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 23px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    
+
+    text-align: center;
+    text-transform: lowercase;
+
+    color: #FFFFFF;
+    transform: rotate(0.25deg);
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+}
+
+#img_go {
+    padding-left: 5px;
+}
