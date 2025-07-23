@@ -4,9 +4,11 @@ import sacola from '../assets/sacola.svg';
 import { Link } from 'react-router-dom';
 import CarrinhoModal from './CarrinhoModal';
 import { useSearchContext } from '../contexts/SearchContext';
+import { useCarrinhoContext } from '../contexts/CarrinhoContext';
 
 export default function Header() {
-  const {search, setSearch} = useSearchContext();
+  const { search, setSearch } = useSearchContext();
+  const { itensCarrinho } = useCarrinhoContext();
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearch(event.target.value);
@@ -66,6 +68,14 @@ export default function Header() {
               <button className="botao_sacola" onClick={onClickBotaoCarrinho}>
                 <img src={sacola} alt="Sacola" />
               </button>
+              <span id='span_texto_quantidade_carrinho' className='fonte_negrito'>{
+                itensCarrinho.length ?
+                  itensCarrinho.reduce(
+                    (acumulador, item) => acumulador + item.quantidade
+                    , 0)
+                  :
+                  ''}
+              </span>
             </div>
           </div>
         </div>

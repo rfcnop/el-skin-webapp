@@ -81,6 +81,10 @@
     cursor: pointer;
 }
 
+#span_texto_quantidade_carrinho {
+    vertical-align: text-bottom;
+}
+
 .div_menu {
     margin-top: 20px;
     display: flex;
