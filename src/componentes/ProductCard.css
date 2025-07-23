@@ -1,9 +1,19 @@
-.div_card {
-    width: 60%;
+.div_card_externo {
+    min-width: 25%;
+    margin-bottom: 50px;
+}
+
+.div_card_interno {
+    width: 230px;
+}
+
+.div_altura_texto_card {
+    height: 140px;
 }
 
 .img_produto {
-    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
 }
 
 .div_nome {
@@ -36,6 +46,7 @@
     color: #FFFFFF;
 
     transform: rotate(0.25deg);
+    cursor: pointer;
 }
 
 .div_preco_comprar {

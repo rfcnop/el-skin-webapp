@@ -6,16 +6,25 @@ import Footer from './componentes/Footer';
 import Sobre from './pages/Sobre';
 import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
+import { ProdutosContextProvider } from './contexts/ProdutosContext';
+import { CarrinhoContextProvider } from './contexts/CarrinhoContext';
+import { SearchContextProvider } from './contexts/SearchContext';
 
 function App() {
   return <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route index path='/' element={<Home />} />
-      <Route path='/sobre' element={<Sobre />} />
-      <Route path='/faleconosco' element={<FaleConosco />} />
-      <Route path='*' element={<NotFound />} />
-    </Routes>
+    <ProdutosContextProvider>
+      <SearchContextProvider>
+        <CarrinhoContextProvider>
+          <Header />
+          <Routes>
+            <Route index path='/' element={<Home />} />
+            <Route path='/sobre' element={<Sobre />} />
+            <Route path='/faleconosco' element={<FaleConosco />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </CarrinhoContextProvider>
+      </SearchContextProvider>
+    </ProdutosContextProvider>
     <Footer />
   </BrowserRouter>;
 }

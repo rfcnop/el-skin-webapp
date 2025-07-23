@@ -35,8 +35,6 @@
 
 #div_carousel {
     overflow: hidden; /* necessário? */
-    margin-left: 10%;
-    margin-right: 10%;
     align-items: center;
 }
 

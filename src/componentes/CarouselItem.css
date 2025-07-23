@@ -53,41 +53,11 @@
     color: #94426E;
 }
 
-.desconto {
-    background: #DC5E5E;
-    border-radius: 8px;
-    font-size: 20px;
-    line-height: 30px;
-    text-align: center;
-    text-transform: lowercase;
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-    color: #FFFFFF;
-
-    transform: rotate(0.25deg);
-    width: 140px;
-}
-
 .use_o_cupom {
     font-size: 16px;
     line-height: 24px;
 
     text-align: center;
-
-    color: #94426E;
-}
-
-.nome_cupom {
-    box-sizing: border-box;
-
-    border: 1px dashed #94426E;
-
-    font-size: 20px;
-    line-height: 30px;
-    text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
 
     color: #94426E;
 }
