@@ -1,11 +1,12 @@
 import './ProductShowcase.css';
 import ProductCard from './ProductCard';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import backEnd from '../services/BackEnd';
 import IProduct from '../types/IProduct';
+import { useProductsContext } from '../contexts/ProdutosContext';
 
 export default function ProductShowcase() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { products, setProducts} = useProductsContext();
 
   useEffect(
     () => {
@@ -13,7 +14,7 @@ export default function ProductShowcase() {
         const resposta = await backEnd.get<IProduct[]>('products');
         setProducts(resposta.data);
       })();
-    }, []
+    }, [setProducts]
   );
 
   return (<div className='margem_10 padding_1 div_showcase'>

@@ -3,6 +3,7 @@ import lupa from '../assets/lupa.svg';
 import sacola from '../assets/sacola.svg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import CarrinhoModal from './CarrinhoModal';
 
 export default function Header() {
   const [textoBusca, setTextoBusca] = useState('');
@@ -19,6 +20,20 @@ export default function Header() {
     }
   }
 
+  function onClickBotaoCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
+    const divCarrinhoModalOverlay = document.getElementById('div_carrinho_modal_overlay');
+    if (divCarrinhoModalOverlay) {
+      const estaEscondido = divCarrinhoModalOverlay.style.display === '' || divCarrinhoModalOverlay.style.display === 'none';
+      if (estaEscondido) {
+        divCarrinhoModalOverlay.style.display = 'unset';
+        divCarrinhoModalOverlay.focus();
+      }
+      else
+        divCarrinhoModalOverlay.style.display = 'none';
+    }
+  }
+
   const opcoesMenu = [
     'Categorias',
     'Tipo de pele',
@@ -27,6 +42,7 @@ export default function Header() {
   ];
   return (
     <header>
+      <CarrinhoModal />
       <div className="margem_10 padding_1 div_header">
         <div className="div_barra_superior">
           <Link className="link_logo" to=''>
@@ -49,7 +65,7 @@ export default function Header() {
           </form>
           <div className="div_sacola">
             <div>
-              <button className="botao_sacola">
+              <button className="botao_sacola" onClick={onClickBotaoCarrinho}>
                 <img src={sacola} alt="Sacola" />
               </button>
             </div>
