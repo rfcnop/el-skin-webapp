@@ -13,9 +13,7 @@
 }
 
 .div_lista_de_produtos {
-    display: grid;
-    grid: repeat(2, 500px) / auto-flow 27%;
-
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-
 }
