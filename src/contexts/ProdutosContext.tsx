@@ -7,6 +7,7 @@ interface ProductsContextType {
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(undefined);
+ProductsContext.displayName = 'Products Context';
 
 //export function ProdutosContextProvider({ children }: React.PropsWithChildren) { // a versão abaixo é mais segura, aceita menos coisas
 export function ProdutosContextProvider({ children }: { children: React.ReactNode }) {

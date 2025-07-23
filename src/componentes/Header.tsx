@@ -2,22 +2,20 @@ import './Header.css';
 import lupa from '../assets/lupa.svg';
 import sacola from '../assets/sacola.svg';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import CarrinhoModal from './CarrinhoModal';
+import { useSearchContext } from '../contexts/SearchContext';
 
 export default function Header() {
-  const [textoBusca, setTextoBusca] = useState('');
+  const {search, setSearch} = useSearchContext();
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setTextoBusca(event.target.value);
-    console.log(textoBusca);
+    setSearch(event.target.value);
   }
 
   function onClickSearch(event: React.MouseEvent<HTMLFormElement, MouseEvent>) {
     event.preventDefault();
-    if (textoBusca.trim()) {
-      window.alert(`Você pesquisou ${textoBusca}`);
-    }
+    if (search.trim())
+      window.location.replace('#resultado_da_busca');
   }
 
   function onClickBotaoCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -53,7 +51,7 @@ export default function Header() {
               <input
                 className="fonte_normal caixa_de_pesquisa"
                 placeholder="O que você está procurando?"
-                value={textoBusca}
+                value={search}
                 onChange={handleOnChange}
               />
             </div>

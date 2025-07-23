@@ -9,6 +9,7 @@ interface CarrinhoContextType {
 }
 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
+CarrinhoContext.displayName = 'Carrinho Context';
 
 export function CarrinhoContextProvider({ children }: React.PropsWithChildren) {
   const [itensCarrinho, setItensCarrinho] = useState<IItemCarrinho[]>([]);
