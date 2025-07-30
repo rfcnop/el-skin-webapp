@@ -1,11 +1,11 @@
-import './Sobre.css';
+import './About.css';
 import imagemBottom from '../assets/sobre/imagem_sobre_bottom.png';
 import imagemLeft from '../assets/sobre/imagem_sobre_left.png';
 import imagemRight from '../assets/sobre/imagem_sobre_right.png';
 import imagemFaleConosco from '../assets/sobre/fale_conosco.svg';
 import { Link } from 'react-router-dom';
 
-export default function Sobre() {
+export default function About() {
   return (
     <main>
       <div className='margem_10 div_sobre'>

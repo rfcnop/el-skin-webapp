@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   const redes_sociais = ['instagram', 'facebook', 'youtube', 'pintrest', 'twitter', 'linkedin', 'spotify'];
   return (
-    <footer className='margem_10 padding_1'>
+    <footer data-testid='footer_footer' className='margem_10 padding_1'>
       <div id='footer_top'>
         <br />
         <br />

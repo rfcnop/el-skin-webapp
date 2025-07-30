@@ -1,7 +1,7 @@
 import './ProductCard.css';
 import IProduct from '../types/IProduct';
 import sacola from '../assets/sacola.svg';
-import { useCarrinhoContext } from '../contexts/CarrinhoContext';
+import { useCarrinhoContext } from '../contexts/CartContext';
 
 function corDaTag(tag: string) {
   switch (tag) {
@@ -36,11 +36,11 @@ function corDaTag(tag: string) {
   case 'corpo':
     return '#8FBC8B';
   default:
-    return '#808000';
+    return '#000000';
   }
 }
 
-export default function ProductCard(product: IProduct) {
+export default function ProductCard({ product } : { product: IProduct }) {
   const { addProduct } = useCarrinhoContext();
 
   return (
@@ -64,7 +64,7 @@ export default function ProductCard(product: IProduct) {
         <br />
         <div className='div_preco_comprar'>
           <div className='fonte_negrito preco_produto'>R$ {product.price.toFixed(2).replace('.', ',')}</div>
-          <button className='fonte_negrito botao_comprar' onClick={e => {e.preventDefault(); addProduct(product.id);}}>
+          <button data-testid='botao_comprar' className='fonte_negrito botao_comprar' onClick={e => {e.stopPropagation(); addProduct(product.id);}}>
             <div id='div_comprar'>
               Comprar
             </div>

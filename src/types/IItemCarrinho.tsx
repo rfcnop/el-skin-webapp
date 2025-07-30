@@ -1,5 +1,5 @@
 interface IItemCarrinho {
-  id: number,
+  productId: number,
   quantidade: number
 }
 

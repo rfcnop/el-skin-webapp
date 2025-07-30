@@ -8,12 +8,12 @@ interface SearchContextType {
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 SearchContext.displayName = 'Search Context';
 
-export function SearchContextProvider({ children }: { children: React.ReactNode }) {
+export function SearchContextProvider({ children, value }: { children: React.ReactNode, value?: Partial<SearchContextType> | undefined }) {
   const [search, setSearch] = useState('');
 
   const contextValue = useMemo(
-    () => ({ search, setSearch })
-    , [search]
+    () => ({ search, setSearch, ...value })
+    , [search, value]
   );
 
   return (<SearchContext value={contextValue}>

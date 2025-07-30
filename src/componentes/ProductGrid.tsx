@@ -1,21 +1,21 @@
-import './ProductShowcase.css';
+import './ProductGrid.css';
 import ProductCard from './ProductCard';
 import { useEffect, useState } from 'react';
-import backEnd from '../services/BackEnd';
+import productService from '../services/productService';
 import IProduct from '../types/IProduct';
 import { useProductsContext } from '../contexts/ProdutosContext';
 import { useSearchContext } from '../contexts/SearchContext';
 
-export default function ProductShowcase() {
-  const { products, setProducts} = useProductsContext();
+export default function ProductGrid() {
+  const { products, setProducts } = useProductsContext();
   const { search } = useSearchContext();
   const [produtosBusca, setProdutosBusca] = useState<IProduct[]>([]);
 
   useEffect(
     () => {
       (async function() {
-        const resposta = await backEnd.get<IProduct[]>('products');
-        setProducts(resposta.data);
+        const produtos = await productService.getProdutos();
+        setProducts(produtos);
       })();
     }, [setProducts]
   );
@@ -44,7 +44,7 @@ export default function ProductShowcase() {
       {
         [
           produtosBusca.map(
-            (product, index) => <ProductCard key={index} {...product} />
+            (product, index) => <ProductCard key={index} product={product} />
           )
         ]
       }

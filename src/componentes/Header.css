@@ -29,7 +29,7 @@
     text-decoration: none;
 }
 
-.div_barra_de_pesquisa {
+.form_barra_de_pesquisa {
     flex-grow: 3;
     background: #F5F5F5;
     border-radius: 8px;
