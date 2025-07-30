@@ -52,7 +52,7 @@ export const carrinhoReducer = (state: IItemCarrinho[], action : {type: string, 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
 CarrinhoContext.displayName = 'Carrinho Context';
 
-export function CarrinhoContextProvider({ children }: React.PropsWithChildren) {
+export function CarrinhoContextProvider({ children, value }: {children: React.ReactNode, value?: Partial<CarrinhoContextType>}) {
   const [itensCarrinho, dispatchCarrinho] = useReducer(carrinhoReducer, []);
 
   const addProduct = useCallback(function (produtoId: number) {
@@ -71,8 +71,8 @@ export function CarrinhoContextProvider({ children }: React.PropsWithChildren) {
   }, [removeProduct]);
 
   const contextValue = useMemo(
-    () => ({ itensCarrinho, addProduct, removeProduct, updateQuantidade })
-    , [itensCarrinho, addProduct, removeProduct, updateQuantidade]
+    () => ({ itensCarrinho, addProduct, removeProduct, updateQuantidade, ...value })
+    , [itensCarrinho, addProduct, removeProduct, updateQuantidade, value]
   );
 
   return (<CarrinhoContext value={contextValue}>

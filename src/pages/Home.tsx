@@ -1,11 +1,11 @@
 import Carousel from '../componentes/Carousel';
-import ProductShowcase from '../componentes/ProductShowcase';
+import ProductGrid from '../componentes/ProductGrid';
 
 export default function Home() {
   return (
     <main>
       <Carousel />
-      <ProductShowcase />
+      <ProductGrid />
     </main>
   );
 }

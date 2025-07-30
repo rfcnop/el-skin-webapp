@@ -6,7 +6,7 @@ const backEnd = axios.create(
   }
 );
 
-export default backEnd;
+export default backEnd; // parar de exportar isso quando não for mais necessário
 
 // obs: um interceptor de request é bom para colocar tokens de login, etc
 
@@ -24,3 +24,8 @@ backEnd.interceptors.response.use(
     return Promise.reject(erro);
   }
 );
+
+export async function getProdutos() {
+  const resposta = await backEnd.get('products');
+  return resposta.data;
+}

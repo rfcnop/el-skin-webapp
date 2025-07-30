@@ -21,7 +21,7 @@ export default function Header() {
   }
 
   function onClickBotaoCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    event.preventDefault();
+    event.stopPropagation();
     const divCarrinhoModalOverlay = document.getElementById('div_carrinho_modal_overlay');
     if (divCarrinhoModalOverlay) {
       const estaEscondido = divCarrinhoModalOverlay.style.display === '' || divCarrinhoModalOverlay.style.display === 'none';
@@ -48,9 +48,10 @@ export default function Header() {
           <Link className="link_logo" to=''>
             AL SKIN
           </Link>
-          <form onSubmit={onClickSearch} className="div_barra_de_pesquisa">
+          <form onSubmit={onClickSearch} className="form_barra_de_pesquisa">
             <div className="div_input">
               <input
+                data-testid='input_pesquisa'
                 className="fonte_normal caixa_de_pesquisa"
                 placeholder="O que você está procurando?"
                 value={search}
@@ -58,17 +59,17 @@ export default function Header() {
               />
             </div>
             <div className="div_lupa">
-              <button className="botao_lupa" type='submit'>
+              <button data-testid='botao_lupa' className="botao_lupa" type='submit'>
                 <img src={lupa} alt="Sacola" />
               </button>
             </div>
           </form>
           <div className="div_sacola">
             <div>
-              <button className="botao_sacola" onClick={onClickBotaoCarrinho}>
+              <button data-testid='botao_sacola' className="botao_sacola" onClick={onClickBotaoCarrinho}>
                 <img src={sacola} alt="Sacola" />
               </button>
-              <span id='span_texto_quantidade_carrinho' className='fonte_negrito'>{
+              <span data-testid='span_texto_quantidade_carrinho' id='span_texto_quantidade_carrinho' className='fonte_negrito'>{
                 itensCarrinho.length ?
                   itensCarrinho.reduce(
                     (acumulador, item) => acumulador + item.quantidade

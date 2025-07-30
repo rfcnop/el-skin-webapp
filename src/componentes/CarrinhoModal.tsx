@@ -21,7 +21,7 @@ export default function CarrinhoModal() {
   ), [itensCarrinho, products]);
 
   function onClickBotaoFecharCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    event.preventDefault();
+    event.stopPropagation();
     fecharCarrinho();
   }
 
@@ -36,7 +36,7 @@ export default function CarrinhoModal() {
       divCarrinhoModal.style.display = 'none';
   }
 
-  return (<div id='div_carrinho_modal_overlay' tabIndex={-1} onClick={fecharCarrinho} onKeyDown={onKeyDown}>
+  return (<div data-testid='div_carrinho_modal_overlay' id='div_carrinho_modal_overlay' tabIndex={-1} onClick={fecharCarrinho} onKeyDown={onKeyDown}>
     <div id='div_carrinho_modal' className='fonte_normal' onClick={e => e.stopPropagation()}>
       <div id='div_barra_titulo_carrinho'>
         <span>Carrinho</span>

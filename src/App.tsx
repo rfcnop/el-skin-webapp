@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './componentes/Header';
 import Footer from './componentes/Footer';
-import Sobre from './pages/Sobre';
+import About from './pages/About';
 import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
@@ -18,7 +18,7 @@ function App() {
           <Header />
           <Routes>
             <Route index path='/' element={<Home />} />
-            <Route path='/sobre' element={<Sobre />} />
+            <Route path='/sobre' element={<About />} />
             <Route path='/faleconosco' element={<FaleConosco />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
