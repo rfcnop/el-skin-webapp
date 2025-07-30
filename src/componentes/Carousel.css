@@ -36,6 +36,7 @@
 #div_carousel {
     overflow: hidden; /* necessário? */
     align-items: center;
+    position: relative;
 }
 
 #div_wrapper_carousel {
@@ -51,8 +52,8 @@
 
 .botao_carousel_anterior {
     position: absolute;
-    bottom: 50%;
-    left: 15%;
+    top: 45%;
+    left: 5%;
     border: none;
     background-color: transparent;
     z-index: 127;
@@ -61,8 +62,8 @@
 
 .botao_carousel_proximo {
     position: absolute;
-    bottom: 50%;
-    right: 15%;
+    top: 45%;
+    right: 5%;
     border: none;
     background-color: transparent;
     z-index: 127;

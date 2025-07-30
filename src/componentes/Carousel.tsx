@@ -58,9 +58,9 @@ export default function Carousel() {
       <span className='fonte_negrito primeira_compra'>primeira compra?</span><span className='fonte_normal reais_off'><b>R$25 OFF</b> A PARTIR DE <b>R$ 200</b></span><button className='fonte_negrito botao_primeira_25'>PRIMEIRA25</button>
     </div>
     <div id='div_carousel' className='margem_10'>
-      <button className='botao_carousel_anterior' onClick={e => {e.preventDefault(); carouselMove(false);}}><img src={imgAnterior} alt='Ir para imagem anterior' /></button>
-      <button className='botao_carousel_proximo' onClick={e => {e.preventDefault(); carouselMove(true);}}><img src={imgProximo} alt='Ir para imagem posterior' /></button>
-      <div id='div_wrapper_carousel'>
+      <button className='botao_carousel_anterior' onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior} alt='Ir para imagem anterior' /></button>
+      <button data-testid='botao_carousel_proximo' className='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo} alt='Ir para imagem posterior' /></button>
+      <div data-testid='div_wrapper_carousel' id='div_wrapper_carousel'>
         {
           [
             carouselItems.map((carouselItem, index) => <CarouselItem key={index} {...carouselItem} />)

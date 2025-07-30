@@ -15,7 +15,7 @@ export const carrinhoReducer = (state: IItemCarrinho[], action : {type: string, 
   switch (action.type) {
   case ADD_PRODUTO: {
     const novoProduto = action.payload as IItemCarrinho;
-    const produto = state.findIndex((item) => item.id === novoProduto.id);
+    const produto = state.findIndex((item) => item.productId === novoProduto.productId);
     if (produto === -1) {
       novoProduto.quantidade = 1;
       return [...state, novoProduto];
@@ -29,12 +29,12 @@ export const carrinhoReducer = (state: IItemCarrinho[], action : {type: string, 
   }
   case REMOVE_PRODUTO: {
     const produtoId = action.payload;
-    return state.filter((item) => item.id !== produtoId);
+    return state.filter((item) => item.productId !== produtoId);
   }
   case UPDATE_QUANTIDADE: {
     const { produtoId: id, quantidade } = action.payload as UpdateQuantidadeType;
     return state.map((item) =>
-      item.id === id ? { ...item, quantidade } : item
+      item.productId === id ? { ...item, quantidade } : item
     );
   }
   default:
@@ -46,7 +46,7 @@ export function useCart() {
   const [itensCarrinho, dispatchCarrinho] = useReducer(carrinhoReducer, []);
 
   const addProduct = useCallback(function (produtoId: number) {
-    dispatchCarrinho({ type: ADD_PRODUTO, payload: {id: produtoId, quantidade: 1 }});
+    dispatchCarrinho({ type: ADD_PRODUTO, payload: {productId: produtoId, quantidade: 1 }});
   }, []);
 
   const removeProduct = useCallback(function (produtoId: number) {

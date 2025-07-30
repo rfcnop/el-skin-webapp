@@ -4,7 +4,7 @@ import imgEnviar from '../assets/enviar.svg';
 
 export default function CarouselItem(props: ICarouselItem) {
   return (
-    <div className="div_item_carousel">
+    <div data-testid='div_item_carousel' className="div_item_carousel">
       <div
         className="div_imagem_carrossel"
         style={{ backgroundImage: `url(${props.backgroundImage})` }}

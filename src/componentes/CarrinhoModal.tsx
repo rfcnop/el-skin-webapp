@@ -15,7 +15,7 @@ export default function CarrinhoModal() {
   useMemo(() => setValorTotal(
     itensCarrinho.reduce(
       (valorAcumulado, itemAtual) => {
-        const produto = products.find(produto => produto.id === itemAtual.id);
+        const produto = products.find(produto => produto.id === itemAtual.productId);
         return valorAcumulado + itemAtual.quantidade * (produto ? produto.price : 0);
       } , 0)
   ), [itensCarrinho, products]);
@@ -40,19 +40,19 @@ export default function CarrinhoModal() {
     <div id='div_carrinho_modal' className='fonte_normal' onClick={e => e.stopPropagation()}>
       <div id='div_barra_titulo_carrinho'>
         <span>Carrinho</span>
-        <button id='botao_fechar_carrinho' onClick={onClickBotaoFecharCarrinho}>X</button>
+        <button data-testid='botao_fechar_carrinho' id='botao_fechar_carrinho' onClick={onClickBotaoFecharCarrinho}>X</button>
       </div>
       <div id='div_itens_carrinho_modal'>
         {
           itensCarrinho.length ?
             itensCarrinho.map(
               itemCarrinho => {
-                const produto = products.find(produto => produto.id === itemCarrinho.id);
+                const produto = products.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
-                  return <CarrinhoModalItem key={itemCarrinho.id} produto={produto} itemCarrinho={itemCarrinho} />;
+                  return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else
                   return (
-                    <div key={itemCarrinho.id} style={{ textAlign: 'center' }}>
+                    <div key={itemCarrinho.productId} style={{ textAlign: 'center' }}>
                       Produto não encontrado
                     </div>);
               }
