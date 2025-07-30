@@ -4,7 +4,7 @@ import sacola from '../assets/sacola.svg';
 import { Link } from 'react-router-dom';
 import CarrinhoModal from './CarrinhoModal';
 import { useSearchContext } from '../contexts/SearchContext';
-import { useCarrinhoContext } from '../contexts/CarrinhoContext';
+import { useCarrinhoContext } from '../contexts/CartContext';
 
 export default function Header() {
   const { search, setSearch } = useSearchContext();

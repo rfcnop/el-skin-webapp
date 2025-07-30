@@ -1,21 +1,14 @@
-import { createContext, useContext, useMemo, useCallback, useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import IItemCarrinho from '../types/IItemCarrinho';
-
-interface CarrinhoContextType {
-  itensCarrinho: IItemCarrinho[],
-  addProduct: (produtoId: number) => void,
-  removeProduct: (produtoId: number) => void,
-  updateQuantidade: (produtoId: number, quantidade: number) => void
-}
 
 interface UpdateQuantidadeType {
   produtoId: number,
   quantidade: number
 }
 
-export const ADD_PRODUTO = 'ADD_PRODUTO';
-export const REMOVE_PRODUTO = 'REMOVE_PRODUTO';
-export const UPDATE_QUANTIDADE = 'UPDATE_QUANTIDADE';
+const ADD_PRODUTO = 'ADD_PRODUTO';
+const REMOVE_PRODUTO = 'REMOVE_PRODUTO';
+const UPDATE_QUANTIDADE = 'UPDATE_QUANTIDADE';
 
 // Essa função e as constantes do switch foram fornecidas pelo professor no Trello
 export const carrinhoReducer = (state: IItemCarrinho[], action : {type: string, payload: IItemCarrinho | number | UpdateQuantidadeType}) => {
@@ -49,10 +42,7 @@ export const carrinhoReducer = (state: IItemCarrinho[], action : {type: string, 
   }
 };
 
-const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
-CarrinhoContext.displayName = 'Carrinho Context';
-
-export function CarrinhoContextProvider({ children, value }: {children: React.ReactNode, value?: Partial<CarrinhoContextType>}) {
+export function useCart() {
   const [itensCarrinho, dispatchCarrinho] = useReducer(carrinhoReducer, []);
 
   const addProduct = useCallback(function (produtoId: number) {
@@ -70,19 +60,5 @@ export function CarrinhoContextProvider({ children, value }: {children: React.Re
       removeProduct(produtoId);
   }, [removeProduct]);
 
-  const contextValue = useMemo(
-    () => ({ itensCarrinho, addProduct, removeProduct, updateQuantidade, ...value })
-    , [itensCarrinho, addProduct, removeProduct, updateQuantidade, value]
-  );
-
-  return (<CarrinhoContext value={contextValue}>
-    {children}
-  </CarrinhoContext>);
-}
-
-export function useCarrinhoContext() {
-  const context = useContext(CarrinhoContext);
-  if (!context)
-    throw new Error('useCarrinhoContext deve ser usado dentro de <CarrinhoContextProvider>');
-  return context; // não pode ser undefined, devido ao type narrowing
+  return { itensCarrinho, addProduct, removeProduct, updateQuantidade };
 }

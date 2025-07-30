@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 const mockItensCarrinho = [{id: 1, quantidade: 1}];
 
-jest.mock('../contexts/CarrinhoContext', () => ({
+jest.mock('../contexts/CartContext', () => ({
   useCarrinhoContext: () => ({
     itensCarrinho: mockItensCarrinho
   }),

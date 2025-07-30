@@ -7,7 +7,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
-import { CarrinhoContextProvider } from './contexts/CarrinhoContext';
+import { CarrinhoContextProvider } from './contexts/CartContext';
 import { SearchContextProvider } from './contexts/SearchContext';
 
 function App() {

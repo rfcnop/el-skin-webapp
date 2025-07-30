@@ -2,7 +2,7 @@ import ProductGrid from './ProductGrid';
 import { render, screen } from '@testing-library/react';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { SearchContextProvider } from '../contexts/SearchContext';
-import { CarrinhoContextProvider } from '../contexts/CarrinhoContext';
+import { CarrinhoContextProvider } from '../contexts/CartContext';
 
 const doisProdutos = [
   {

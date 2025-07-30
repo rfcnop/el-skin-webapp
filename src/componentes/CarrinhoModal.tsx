@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import './CarrinhoModal.css';
-import { useCarrinhoContext } from '../contexts/CarrinhoContext';
+import { useCarrinhoContext } from '../contexts/CartContext';
 import { useProductsContext } from '../contexts/ProdutosContext';
 import { Link } from 'react-router-dom';
 import CarrinhoModalItem from './CarrinhoModalItem';

@@ -1,6 +1,6 @@
 import './CarrinhoModalItem.css';
 import '../types/IProduct';
-import { useCarrinhoContext } from '../contexts/CarrinhoContext';
+import { useCarrinhoContext } from '../contexts/CartContext';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 

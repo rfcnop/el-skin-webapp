@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import IProduct from '../types/IProduct';
-import { CarrinhoContextProvider } from '../contexts/CarrinhoContext';
+import { CarrinhoContextProvider } from '../contexts/CartContext';
 import userEvent from '@testing-library/user-event';
 
 const produto: IProduct = {

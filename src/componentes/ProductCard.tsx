@@ -1,7 +1,7 @@
 import './ProductCard.css';
 import IProduct from '../types/IProduct';
 import sacola from '../assets/sacola.svg';
-import { useCarrinhoContext } from '../contexts/CarrinhoContext';
+import { useCarrinhoContext } from '../contexts/CartContext';
 
 function corDaTag(tag: string) {
   switch (tag) {
