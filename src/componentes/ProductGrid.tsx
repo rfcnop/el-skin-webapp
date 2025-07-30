@@ -1,7 +1,7 @@
 import './ProductGrid.css';
 import ProductCard from './ProductCard';
 import { useEffect, useState } from 'react';
-import { getProdutos } from '../services/BackEnd';
+import productService from '../services/productService';
 import IProduct from '../types/IProduct';
 import { useProductsContext } from '../contexts/ProdutosContext';
 import { useSearchContext } from '../contexts/SearchContext';
@@ -14,7 +14,7 @@ export default function ProductGrid() {
   useEffect(
     () => {
       (async function() {
-        const produtos = await getProdutos();
+        const produtos = await productService.getProdutos();
         setProducts(produtos);
       })();
     }, [setProducts]

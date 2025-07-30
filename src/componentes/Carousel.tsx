@@ -4,7 +4,7 @@ import imgProximo from '../assets/carousel/proximo.svg';
 import { useCallback, useEffect, useState } from 'react';
 import CarouselItem from './CarouselItem';
 import ICarouselItem from '../types/ICarouselItem';
-import backEnd from '../services/BackEnd';
+import backEnd from '../services/backEnd';
 
 export default function Carousel() {
   const [momentoUltimaMudancaCarrossel, setMomentoUltimaMudancaCarrossel] = useState(Date.now());

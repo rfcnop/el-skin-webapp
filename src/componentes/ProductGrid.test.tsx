@@ -4,7 +4,7 @@ import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { SearchContextProvider } from '../contexts/SearchContext';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
 
-const doisProdutos = [
+const mockDoisProdutos = [
   {
     id: 1,
     name: 'Creme Hidratante Facial',
@@ -28,12 +28,12 @@ const doisProdutos = [
     ]
   }];
 
-jest.mock('../services/BackEnd', () => ({
-  ...(jest.requireActual('../services/BackEnd')),
-  getProdutos: async () => doisProdutos
+jest.mock('../services/productService', () => ({
+  //...(jest.requireActual('../services/productService')),
+  getProdutos: async () => mockDoisProdutos
 }));
 
-test('"ProductShowcase" deve renderizar dois produtos', async () => {
+test('"ProductGrid" deve renderizar dois produtos', async () => {
   render(
     <ProdutosContextProvider>
       <SearchContextProvider>
@@ -46,7 +46,7 @@ test('"ProductShowcase" deve renderizar dois produtos', async () => {
   expect(divsComprar).toHaveLength(2);
 });
 
-test('"ProductShowcase" deve renderizar somente o produto que menciona UVA', async () => {
+test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async () => {
   render(
     <ProdutosContextProvider>
       <SearchContextProvider value={{search: 'UVA'}}>
@@ -59,7 +59,7 @@ test('"ProductShowcase" deve renderizar somente o produto que menciona UVA', asy
   expect(divsComprar).toHaveLength(1);
 });
 
-test('"ProductShowcase" deve ser renderizado sem produtos, pois nenhum contém magma', async () => {
+test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma', async () => {
   render(
     <ProdutosContextProvider>
       <SearchContextProvider value={{search: 'magma'}}>

@@ -24,8 +24,3 @@ backEnd.interceptors.response.use(
     return Promise.reject(erro);
   }
 );
-
-export async function getProdutos() {
-  const resposta = await backEnd.get('products');
-  return resposta.data;
-}
