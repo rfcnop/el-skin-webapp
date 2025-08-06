@@ -1,7 +1,7 @@
-import './ProductCard.css';
 import IProduct from '../types/IProduct';
 import sacola from '../assets/sacola.svg';
 import { useCarrinhoContext } from '../contexts/CartContext';
+import styled from 'styled-components';
 
 function corDaTag(tag: string) {
   switch (tag) {
@@ -44,35 +44,142 @@ export default function ProductCard({ product } : { product: IProduct }) {
   const { addProduct } = useCarrinhoContext();
 
   return (
-    <div className='div_card_externo'>
-      <div className='div_card_interno'>
-        <img className='img_produto' src={product.image} alt={`imagem de ${product.name}`} />
-        <div className='div_altura_texto_card'>
-          <div className='fonte_negrito div_nome'>{product.name}</div>
-          <div className='fonte_normal div_descricao'>{product.description}</div>
-        </div>
+    <DivCardExterno>
+      <DivCardInterno>
+        <ImgProduto src={product.image} alt={`imagem de ${product.name}`} />
+        <DivAlturaTextoCard>
+          <DivNome>{product.name}</DivNome>
+          <DivDescricao>{product.description}</DivDescricao>
+        </DivAlturaTextoCard>
         <br />
-        <div className='div_produto'>
+        <div>
           {
             [
               product.tags.map((tag, index) => {
-                return <button style={{ backgroundColor: corDaTag(tag) }} className='fonte_negrito tag_produto' key={index}>{tag}</button>;
+                return <ButtonTagProduto style={{ backgroundColor: corDaTag(tag) }} key={index}>{tag}</ButtonTagProduto>;
               })
             ]
           }
         </div>
         <br />
-        <div className='div_preco_comprar'>
-          <div className='fonte_negrito preco_produto'>R$ {product.price.toFixed(2).replace('.', ',')}</div>
-          <button data-testid='botao_comprar' className='fonte_negrito botao_comprar' onClick={e => {e.stopPropagation(); addProduct(product.id);}}>
-            <div id='div_comprar'>
+        <DivPrecoComprar>
+          <DivPrecoProduto>R$ {product.price.toFixed(2).replace('.', ',')}</DivPrecoProduto>
+          <ButtonComprar data-testid='botao_comprar' onClick={e => {e.stopPropagation(); addProduct(product.id);}}>
+            <DivComprar>
               Comprar
-            </div>
+            </DivComprar>
             <div>
-              <img id='sacola' src={sacola} alt={'Botão Comprar'} />
+              <ImgSacola src={sacola} alt={'Botão Comprar'} />
             </div>
-          </button>
-        </div>
-      </div>
-    </div>);
+          </ButtonComprar>
+        </DivPrecoComprar>
+      </DivCardInterno>
+    </DivCardExterno>);
 }
+
+const DivCardExterno = styled.div`
+  min-width: 25%;
+  margin-bottom: 50px;
+`;
+
+const DivCardInterno = styled.div`
+  width: 230px;
+`;
+
+const DivAlturaTextoCard = styled.div`
+  height: 140px;
+`;
+
+const ImgProduto = styled.img`
+  width: 100%;
+  border-radius: 8px;
+`;
+
+const DivNome = styled.div`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+
+  color: #222222;
+  cursor: pointer;
+`;
+
+const DivDescricao = styled.div`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #878787;
+`;
+
+const ButtonTagProduto = styled.button`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+
+  width: 91px;
+  border: none;
+  margin-right: 5px;
+
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: lowercase;
+
+  border-radius: 8px;
+
+  color: #FFFFFF;
+
+  transform: rotate(0.25deg);
+  cursor: pointer;
+`;
+
+const DivPrecoComprar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 215px;
+`;
+
+const DivPrecoProduto = styled.div`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+
+  font-size: 20px;
+  line-height: 30px;
+
+  color: #222222;
+`;
+
+const ButtonComprar = styled.button`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+
+  display: flex;
+  font-size: 20px;
+  line-height: 30px;
+  border: none;
+  text-transform: lowercase;
+
+  color: #FFFFFF;
+  background-color: #7045F5;
+  border-radius: 8px;
+  transform: rotate(0.25deg);
+  cursor: pointer;
+`;
+
+const DivComprar = styled.div`
+  padding-left: 5px;
+  padding-right: 5px;
+`;
+
+const ImgSacola = styled.img`
+  margin-top: 3px;
+  float: right;
+`;
