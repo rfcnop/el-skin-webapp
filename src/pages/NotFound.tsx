@@ -1,13 +1,19 @@
-import './NotFound.css';
+import styled from 'styled-components';
 
 export default function NotFound() {
   return (
-    <main>
-      <div className='margem_10 padding_ 1 div_not_found'>
-        <br />
-        <h1>Página não encontrada.</h1>
-        <br />
-      </div>
-    </main>
+    <MainNotFound>
+      <br />
+      <h1>Página não encontrada.</h1>
+      <br />
+    </MainNotFound>
   );
 }
+
+const MainNotFound = styled.main`
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 1%;
+    padding-right: 1%;
+    background-color: #FFF;
+`;

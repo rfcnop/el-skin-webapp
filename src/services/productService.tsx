@@ -1,5 +1,5 @@
 import IProduct from '../types/IProduct';
-import backEnd from './backEnds';
+import backEnd from './backEnd';
 
 const productService = {
   async getProdutos() {
