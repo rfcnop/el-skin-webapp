@@ -9,12 +9,14 @@ import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
 import { CarrinhoContextProvider } from './contexts/CartContext';
 import { SearchContextProvider } from './contexts/SearchContext';
+import GlobalStyles from './componentes/GlobalStyles';
 
 function App() {
   return <BrowserRouter>
     <ProdutosContextProvider>
       <SearchContextProvider>
         <CarrinhoContextProvider>
+          <GlobalStyles />
           <Header />
           <Routes>
             <Route index path='/' element={<Home />} />

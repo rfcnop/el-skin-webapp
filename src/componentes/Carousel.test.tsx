@@ -26,7 +26,7 @@ const mockCarousel = [
   }
 ];
 
-jest.mock('../services/backEnd', () => ({
+jest.mock('../services/backEnds', () => ({
   //...(jest.requireActual('../services/backEnd')),
   default: {
     async get(url: string) {
