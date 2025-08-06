@@ -92,47 +92,47 @@ const DivAlturaTextoCard = styled.div`
 
 const ImgProduto = styled.img`
   width: 100%;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
 `;
 
 const DivNome = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
   cursor: pointer;
 `;
 
 const DivDescricao = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #878787;
+  color: ${ ({theme}) => theme.cores.texto.quaternaria };
 `;
 
 const ButtonTagProduto = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
   width: 91px;
   border: none;
   margin-right: 5px;
 
-  font-size: 13px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.minusculo };
   line-height: 20px;
   text-align: center;
   text-transform: lowercase;
 
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
 
   transform: rotate(0.25deg);
   cursor: pointer;
@@ -148,28 +148,28 @@ const DivPrecoComprar = styled.div`
 const DivPrecoProduto = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
-  font-size: 20px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const ButtonComprar = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
   display: flex;
-  font-size: 20px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
   border: none;
   text-transform: lowercase;
 
-  color: #FFFFFF;
-  background-color: #7045F5;
-  border-radius: 8px;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
+  background-color: ${ ({theme}) => theme.cores.background.botaoComprar };
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   transform: rotate(0.25deg);
   cursor: pointer;
 `;

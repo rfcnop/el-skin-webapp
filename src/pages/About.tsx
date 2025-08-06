@@ -51,7 +51,7 @@ export default function About() {
 }
 
 const MainAbout = styled.main`
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
   margin-left: 10%;
   margin-right: 10%;
 `;
@@ -73,23 +73,23 @@ const DivRightAbout = styled.div`
 const DivTituloAbout = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
-  font-size: 20px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
   text-align: left;
-  color: #000000;
+  color: ${ ({theme}) => theme.cores.texto.primaria };
 `;
 
 const DivTextaoAbout = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
 
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
   text-align: left;
-  color: #000000;
+  color: ${ ({theme}) => theme.cores.texto.primaria };
 `;
 
 const ImgContaGotas = styled.img`
@@ -111,7 +111,7 @@ const DivLinkFaleConoscoAbout = styled.div`
 
 const LinkFaleConoscoAbout = styled(Link)`
   background: #94426E;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
   display: flex;
   align-items: center;
@@ -127,11 +127,11 @@ const LinkFaleConoscoAbout = styled(Link)`
 const DivTextoFaleConoscoAbout = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
 `;
 
 const ImgDente = styled.img`

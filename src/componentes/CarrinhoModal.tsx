@@ -46,13 +46,13 @@ export default function CarrinhoModal() {
         {
           itensCarrinho.length ?
             itensCarrinho.map(
-              itemCarrinho => {
+              (itemCarrinho, index) => {
                 const produto = products.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
                   return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else
                   return (
-                    <DivCentralizado key={itemCarrinho.productId}>
+                    <DivCentralizado key={index}>
                       Produto não encontrado
                     </DivCentralizado>);
               }
@@ -80,7 +80,7 @@ const DivCarrinhoModalOverlay = styled.div`
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${ ({theme}) => theme.cores.background.overlay };
   backdrop-filter: blur(3px);
   z-index: 128;
 `;
@@ -88,14 +88,14 @@ const DivCarrinhoModalOverlay = styled.div`
 const DivCarrinhoModal = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   position: fixed;
   
   width: 310px;
   right: 0;
   top: 0;
 
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
   border-left: 1px solid;
   border-bottom: 1px solid;
 `;
@@ -132,13 +132,13 @@ const DivTotalFinalizar = styled.div`
 const SpanValorTotal = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 `;
 
 const BotaoFinalizarCarrinhoModal = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   text-decoration: none;
   cursor: pointer;
   width: 100%;

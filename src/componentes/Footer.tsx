@@ -59,7 +59,7 @@ const FooterElement = styled.footer`
 `;
 
 const DivFooterTop = styled.div`
-  background-color: #F5F5F5;  
+  background-color: ${ ({theme}) => theme.cores.background.secundaria };
 `;
 
 const DivCentrado = styled.div`
@@ -87,25 +87,25 @@ const DivLinksFooter = styled.div`
 
 const DivFooterBottom = styled.div`
   text-align: center;
-  background-color: #222222;
+  background-color: ${ ({theme}) => theme.cores.background.terciaria };
 `;
 
 const DivLogo = styled.div`
   font-family: 'Shippori Antique';
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.muitoGrande };
   line-height: 35px;
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
 `;
 
 const DivDireitoEEndereco = styled.div`
   font-family: 'Shippori Antique';
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 20px;
 
-  color: #FFFFFF; 
+  color: ${ ({theme}) => theme.cores.texto.terciaria }; 
 `;

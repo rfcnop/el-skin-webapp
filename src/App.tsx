@@ -8,26 +8,30 @@ import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
 import { CarrinhoContextProvider } from './contexts/CartContext';
 import { SearchContextProvider } from './contexts/SearchContext';
-import GlobalStyles from './componentes/GlobalStyles';
+import GlobalStyles from './styles/GlobalStyles';
+import { ThemeProvider } from 'styled-components';
+import tema from './styles/theme';
 
 function App() {
-  return <BrowserRouter>
-    <ProdutosContextProvider>
-      <SearchContextProvider>
-        <CarrinhoContextProvider>
-          <GlobalStyles />
-          <Header />
-          <Routes>
-            <Route index path='/' element={<Home />} />
-            <Route path='/sobre' element={<About />} />
-            <Route path='/faleconosco' element={<FaleConosco />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </CarrinhoContextProvider>
-      </SearchContextProvider>
-    </ProdutosContextProvider>
-    <Footer />
-  </BrowserRouter>;
+  return (<ThemeProvider theme={tema}>
+    <BrowserRouter>
+      <ProdutosContextProvider>
+        <SearchContextProvider>
+          <CarrinhoContextProvider>
+            <GlobalStyles />
+            <Header />
+            <Routes>
+              <Route index path='/' element={<Home />} />
+              <Route path='/sobre' element={<About />} />
+              <Route path='/faleconosco' element={<FaleConosco />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </CarrinhoContextProvider>
+        </SearchContextProvider>
+      </ProdutosContextProvider>
+      <Footer />
+    </BrowserRouter>
+  </ThemeProvider>);
 }
 
 export default App;

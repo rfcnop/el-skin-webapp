@@ -47,50 +47,50 @@ const DivInfoNaImagem = styled.div`
 const DivSubtituloCarousel = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.muitoGrande };
   line-height: 36px;
 
   text-align: center;
   text-transform: lowercase;
 
-  color: #94426E;
+  color: ${ ({theme}) => theme.cores.texto.carrossel };
 `;
 
 const DivTituloCarousel = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.gigante };
   line-height: 62px;
 
   text-align: center;
   text-transform: lowercase;
 
-  color: #94426E;
+  color: ${ ({theme}) => theme.cores.texto.carrossel };
 `;
 
 const DivUseOCupom = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
   text-align: center;
 
-  color: #94426E;
+  color: ${ ({theme}) => theme.cores.texto.carrossel };
 `;
 
 const BotaoComprarCarousel = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   background: #7045F5;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
 
-  font-size: 20px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
   margin-top: 23px;
   padding-left: 15px;
@@ -102,7 +102,7 @@ const BotaoComprarCarousel = styled.button`
   text-align: center;
   text-transform: lowercase;
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
   transform: rotate(0.25deg);
   cursor: pointer;
   display:flex;

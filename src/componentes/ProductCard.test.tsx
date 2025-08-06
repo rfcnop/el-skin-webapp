@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import IProduct from '../types/IProduct';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
 import userEvent from '@testing-library/user-event';
+import { renderComTema } from '../test-utils';
 
 const produto: IProduct = {
   id: 1,
@@ -25,7 +26,7 @@ const produto: IProduct = {
 };
 
 test('"ProductCard" deve ser renderizada', () => {
-  render(
+  renderComTema(
     <CarrinhoContextProvider>
       <ProductCard product={produto} />
     </CarrinhoContextProvider>);
@@ -33,7 +34,7 @@ test('"ProductCard" deve ser renderizada', () => {
 });
 
 test('Todas as tags de "ProductCard" devem ser renderizadas', () => {
-  render(
+  renderComTema(
     <CarrinhoContextProvider>
       <ProductCard product={produto} />
     </CarrinhoContextProvider>);
@@ -43,7 +44,7 @@ test('Todas as tags de "ProductCard" devem ser renderizadas', () => {
 
 test('Deve renderizar tag desconhecida com fundo preto', () => {
   const produtoComTagDesconhecida = {...produto, tags: [...produto.tags, 'toe']};
-  render(
+  renderComTema(
     <CarrinhoContextProvider>
       <ProductCard product={produtoComTagDesconhecida} />
     </CarrinhoContextProvider>);
@@ -52,7 +53,7 @@ test('Deve renderizar tag desconhecida com fundo preto', () => {
 
 test('Deve adicionar produto ao carrinho quando o botão for clicado', () => {
   const addProduct = jest.fn();
-  render(
+  renderComTema(
     <CarrinhoContextProvider value={{addProduct}}>
       <ProductCard product={produto} />
     </CarrinhoContextProvider>);

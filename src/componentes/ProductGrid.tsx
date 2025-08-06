@@ -57,21 +57,21 @@ const DivShowcase = styled.div`
   margin-right: 10%;
   padding-left: 1%;
   padding-right: 1%;
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
 `;
 
 const DivTituloShowcase = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
-  font-size: 20px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
 
   text-align: center;
   text-transform: lowercase;
   
-  color: #000000;
+  color: ${ ({theme}) => theme.cores.texto.primaria };
 `;
 
 const DivListaDeProdutos = styled.div`

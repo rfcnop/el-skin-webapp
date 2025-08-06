@@ -20,9 +20,9 @@ export default function FooterLink(props: PropsLinkFooter) {
 const LinkFooter = styled(Link)`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
 
-      font-size: 16px;
+      font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
   text-align: center;
@@ -31,7 +31,7 @@ const LinkFooter = styled(Link)`
   border: none;
   cursor: pointer;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const UlTopicos = styled.ul`
@@ -43,12 +43,12 @@ const UlTopicos = styled.ul`
 const LiTopico = styled.li`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
 
-  font-size: 14px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
 
-  color: #878787;
+  color: ${ ({theme}) => theme.cores.texto.quaternaria };
 
   padding-top: 1px;
   padding-bottom: 2px;

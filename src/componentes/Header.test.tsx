@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { SearchContextProvider } from '../contexts/SearchContext';
 import Header from './Header';
 import userEvent from '@testing-library/user-event';
+import { ThemeProvider } from 'styled-components';
+import tema from '../styles/theme';
 
 const mockItensCarrinho = [{id: 1, quantidade: 1}];
 
@@ -33,11 +35,14 @@ jest.mock('../contexts/ProdutosContext', () => ({
 
 function renderComProvedores() {
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento
-    wrapper: ({children}) => (<BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-      <SearchContextProvider>
-        { children }
-      </SearchContextProvider>
-    </BrowserRouter>)
+    wrapper: ({children}) => (
+      <ThemeProvider theme={tema}>
+        <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
+          <SearchContextProvider>
+            { children }
+          </SearchContextProvider>
+        </BrowserRouter>
+      </ThemeProvider>)
   });
 }
 

@@ -105,7 +105,7 @@ const DivHeader = styled.div`
   padding-right: 1%;
   display:flex;
   justify-content: center;
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
 `;
 
 const DivBarraSuperior = styled.div`
@@ -121,19 +121,19 @@ const LinkLogo = styled(Link)`
 
   font-family: 'Shippori Antique';
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.muitoGrande };
   line-height: 35px;
   cursor: pointer;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
   text-decoration: none;
 `;
 
 const FormBarraDePesquisa = styled.form`
   flex-grow: 3;
   background: #F5F5F5;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   align-items: center;
   display: flex;
 `;
@@ -146,16 +146,16 @@ const DivInput = styled.div`
 const CaixaDePesquisa = styled.input`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
 
   background: transparent;
   border: none;
   width: 100%;
 
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #878787;
+  color: ${ ({theme}) => theme.cores.texto.quaternaria };
 
   &:focus {
     outline: none;
@@ -189,7 +189,7 @@ const BotaoSacola = styled.button`
 const SpanSacola = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
   vertical-align: text-bottom;
 `;
 
@@ -203,26 +203,26 @@ const DivMenu = styled.div`
 const DivOpcao = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   margin-right:7%;
 
-  font-size: 14px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
   cursor: pointer;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const DivPromocao = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 
-  color: #DC5E5E;
+  color: ${ ({theme}) => theme.cores.texto.promocao };
   text-align: right;
   flex: 1;
 
-  font-size: 14px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
 
   cursor: pointer;
@@ -231,7 +231,7 @@ const DivPromocao = styled.div`
 const DivHR = styled.div`
   margin-left: 10%;
   margin-right: 10%;
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
   width: 80%;
   padding-top: 7px;
   padding-bottom: 4px;

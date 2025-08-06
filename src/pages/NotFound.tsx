@@ -15,5 +15,5 @@ const MainNotFound = styled.main`
     margin-right: 10%;
     padding-left: 1%;
     padding-right: 1%;
-    background-color: #FFF;
+    background-color: ${ ({theme}) => theme.cores.background.primaria };
 `;

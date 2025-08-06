@@ -112,7 +112,7 @@ const MainFaleConosco = styled.main`
   margin-right: 10%;
   padding-left: 1%;
   padding-right: 1%;
-  background-color: #FFF;
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
 `;
 
 const DivSuperior = styled.div`
@@ -128,27 +128,27 @@ const DivEsquerda = styled.div`
 const SpanTitulo = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
   line-height: 30px;
 
   text-align: center;
 
-  color: #000000;
+  color: ${ ({theme}) => theme.cores.texto.primaria };
 `;
 
 const InputFaleConosco = styled.input`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   background: #F5F5F5;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
 
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #878787;
+  color: ${ ({theme}) => theme.cores.texto.quaternaria };
 
   margin-top: 10px;
   padding-left: 15px;
@@ -159,21 +159,21 @@ const InputFaleConosco = styled.input`
 const SpanTexto = styled.span`
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: ${ ({theme}) => theme.fontWeight.normal };
+    font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
     line-height: 24px;
 
-    color: #222222;
+    color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const DivChecks = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
   width: 90%;
   display: flex;
   justify-content: center;
@@ -193,15 +193,15 @@ const LabelChecks = styled.label`
 const TextArea = styled.textarea`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   background: #F5F5F5;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
 
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #878787;
+  color: ${ ({theme}) => theme.cores.texto.quaternaria };
 
   margin-top: 10px;
   padding-left: 15px;
@@ -220,9 +220,9 @@ const DivBotaoEnviar = styled.div`
 const BotaoEnviarMensagem = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
   background: #94426E;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
   display: flex;
   padding-top: 16px;
@@ -231,10 +231,10 @@ const BotaoEnviarMensagem = styled.button`
   width: 91%;
 
   cursor: pointer;
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
 `;
 
 const ImagemEnviar = styled.img`
@@ -249,10 +249,10 @@ const DivDireita = styled.div`
 const DivTexto = styled.div`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
 
-  font-size: 16px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;

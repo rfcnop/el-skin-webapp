@@ -29,7 +29,7 @@ const DivInfoItemCarrinhoModal = styled.div`
 const SpanNegrito = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
 `;
 
 const DivBotoesQuantidadeItemCarrinhoModal = styled.div`
@@ -40,7 +40,7 @@ const DivBotoesQuantidadeItemCarrinhoModal = styled.div`
 const BotaoQuantidadeItemCarrinhoModal = styled.button`
   margin-left: 4px;
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: ${ ({theme}) => theme.borderRadius.pequeno };
   cursor: pointer;
 `;
 
@@ -51,7 +51,7 @@ const DivRemoveItemCarrinhoModal = styled.div`
 
 const BotaoRemoverItemCarrinhoModal = styled.div`
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: ${ ({theme}) => theme.borderRadius.pequeno };
   cursor: pointer;
 `;
 

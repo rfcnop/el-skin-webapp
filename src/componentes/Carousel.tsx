@@ -79,44 +79,44 @@ const DivPromocional = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
   display: flex;
-  background-color: #DC995E;
+  background-color: ${ ({theme}) => theme.cores.background.promocao };
 `;
 
 const SpanPrimeiraCompra = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
   padding-right:3%;
 
-  color: #FFFFFF;
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
 `;
 
 const SpanReaisOff = styled.span`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
   padding-right:3%;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const BotaoPrimeira25 = styled.button`
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
   background: #FFFFFF;
-  border-radius: 8px;
+  border-radius: ${ ({theme}) => theme.borderRadius.medio };
   border: none;
 
-  font-size: 14px;
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
   line-height: 21px;
   cursor: pointer;
 
-  color: #222222;
+  color: ${ ({theme}) => theme.cores.texto.secundaria };
 `;
 
 const DivCarousel = styled.div`
