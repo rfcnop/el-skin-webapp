@@ -1,31 +1,33 @@
-import './Footer.css';
 import footerLinks from '../data/footerLinks.json';
 import FooterLink from './FooterLink';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function Footer() {
   const redes_sociais = ['instagram', 'facebook', 'youtube', 'pintrest', 'twitter', 'linkedin', 'spotify'];
   return (
-    <footer data-testid='footer_footer' className='margem_10 padding_1'>
-      <div id='footer_top'>
+    <FooterElement data-testid='footer_footer'>
+      <DivFooterTop>
         <br />
         <br />
         <br />
-        <div className='div_centrado'>
-          <div id="div_redes_sociais">
+        <DivCentrado>
+          <DivRedesSociais>
             {
               [
                 redes_sociais.map(
-                  (rede, index) => <Link className='link_share' to='/share' key={index}><img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} /></Link>
+                  (rede, index) => <LinkShare to='/share' key={index}>
+                    <img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} />
+                  </LinkShare>
                 )
               ]
             }
-          </div>
-        </div>
+          </DivRedesSociais>
+        </DivCentrado>
         <br />
         <br />
-        <div className='div_centrado'>
-          <div id='div_links_footer'>
+        <DivCentrado>
+          <DivLinksFooter>
             {
               [
                 footerLinks.map(
@@ -33,20 +35,77 @@ export default function Footer() {
                 )
               ]
             }
-          </div>
-        </div>
-      </div>
-      <div id='footer_bottom'>
+          </DivLinksFooter>
+        </DivCentrado>
+      </DivFooterTop>
+      <DivFooterBottom>
         <br />
         <br />
-        <div id='logo_bottom'>AL SKIN</div>
+        <DivLogo>AL SKIN</DivLogo>
         <br />
-        <div className='direito_e_endereco'>2023 AL SKIN. Todos os direitos reservados.</div>
+        <DivDireitoEEndereco>2023 AL SKIN. Todos os direitos reservados.</DivDireitoEEndereco>
         <br />
-        <div className='direito_e_endereco'>Av. Sete de Setembro, 467 - São Paulo/SP - CEP: 05324-980.</div>
+        <DivDireitoEEndereco>Av. Sete de Setembro, 467 - São Paulo/SP - CEP: 05324-980.</DivDireitoEEndereco>
         <br />
         <br />
-      </div>
-    </footer>
+      </DivFooterBottom>
+    </FooterElement>
   );
 }
+
+const FooterElement = styled.footer`
+  margin-left: 10%;
+  margin-right: 10%;
+`;
+
+const DivFooterTop = styled.div`
+  background-color: ${ ({theme}) => theme.cores.background.secundaria };
+`;
+
+const DivCentrado = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const DivRedesSociais = styled.div`
+  width: 31%;
+  justify-content: space-between;
+  display: flex;
+`;
+
+const LinkShare = styled(Link)`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const DivLinksFooter = styled.div`
+  width: 45%;
+  justify-content: space-between;
+  display: flex;
+`;
+
+const DivFooterBottom = styled.div`
+  text-align: center;
+  background-color: ${ ({theme}) => theme.cores.background.terciaria };
+`;
+
+const DivLogo = styled.div`
+  font-family: 'Shippori Antique';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.muitoGrande };
+  line-height: 35px;
+
+  color: ${ ({theme}) => theme.cores.texto.terciaria };
+`;
+
+const DivDireitoEEndereco = styled.div`
+  font-family: 'Shippori Antique';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.pequeno };
+  line-height: 20px;
+
+  color: ${ ({theme}) => theme.cores.texto.terciaria }; 
+`;

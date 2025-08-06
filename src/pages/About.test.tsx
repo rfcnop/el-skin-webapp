@@ -1,9 +1,11 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import About from './About';
+import { renderComTema } from '../test-utils';
+
 
 test('Tela "Sobre" deve ser renderizada', () => {
-  render(
+  renderComTema(
     <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
       <About />
     </BrowserRouter>);

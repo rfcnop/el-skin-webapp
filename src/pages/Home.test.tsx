@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import Home from './Home';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { SearchContextProvider } from '../contexts/SearchContext';
+import { renderComTema } from '../test-utils';
 
 test('Tela "Home" deve ser renderizada', () => {
-  render(
+  renderComTema(
     <ProdutosContextProvider>
       <SearchContextProvider>
         <Home />

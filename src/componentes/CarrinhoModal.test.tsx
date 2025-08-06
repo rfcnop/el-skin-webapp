@@ -1,12 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import CarrinhoModal from './CarrinhoModal';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import userEvent from '@testing-library/user-event';
+import { renderComTema } from '../test-utils';
 
 function renderComProvedores() {
-  return render(
+  return renderComTema(
     <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
       <ProdutosContextProvider>
         <CarrinhoContextProvider>

@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
-import './CarrinhoModal.css';
 import { useCarrinhoContext } from '../contexts/CartContext';
 import { useProductsContext } from '../contexts/ProdutosContext';
 import { Link } from 'react-router-dom';
 import CarrinhoModalItem from './CarrinhoModalItem';
+import styled from 'styled-components';
 
 export default function CarrinhoModal() {
 
@@ -36,39 +36,114 @@ export default function CarrinhoModal() {
       divCarrinhoModal.style.display = 'none';
   }
 
-  return (<div data-testid='div_carrinho_modal_overlay' id='div_carrinho_modal_overlay' tabIndex={-1} onClick={fecharCarrinho} onKeyDown={onKeyDown}>
-    <div id='div_carrinho_modal' className='fonte_normal' onClick={e => e.stopPropagation()}>
-      <div id='div_barra_titulo_carrinho'>
+  return (<DivCarrinhoModalOverlay data-testid='div_carrinho_modal_overlay' id='div_carrinho_modal_overlay' tabIndex={-1} onClick={fecharCarrinho} onKeyDown={onKeyDown}>
+    <DivCarrinhoModal onClick={e => e.stopPropagation()}>
+      <DivBarraTituloCarrinho>
         <span>Carrinho</span>
-        <button data-testid='botao_fechar_carrinho' id='botao_fechar_carrinho' onClick={onClickBotaoFecharCarrinho}>X</button>
-      </div>
-      <div id='div_itens_carrinho_modal'>
+        <BotaoFecharCarrinho data-testid='botao_fechar_carrinho' onClick={onClickBotaoFecharCarrinho}>X</BotaoFecharCarrinho>
+      </DivBarraTituloCarrinho>
+      <DivItensCarrinhoModal>
         {
           itensCarrinho.length ?
             itensCarrinho.map(
-              itemCarrinho => {
+              (itemCarrinho, index) => {
                 const produto = products.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
                   return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else
                   return (
-                    <div key={itemCarrinho.productId} style={{ textAlign: 'center' }}>
+                    <DivCentralizado key={index}>
                       Produto não encontrado
-                    </div>);
+                    </DivCentralizado>);
               }
             )
             :
-            <div style={{ textAlign: 'center' }}>
+            <DivCentralizado>
               Carrinho vazio
-            </div>
+            </DivCentralizado>
         }
-      </div>
-      <div id='div_total_finalizar' hidden={!itensCarrinho.length}>
-        <span>Total: </span><span className='fonte_negrito'>R$ {valorTotal.toFixed(2).replace('.', ',')}</span>
+      </DivItensCarrinhoModal>
+      <DivTotalFinalizar hidden={!itensCarrinho.length}>
+        <span>Total: </span><SpanValorTotal>R$ {valorTotal.toFixed(2).replace('.', ',')}</SpanValorTotal>
         <Link to='/finalizarcompra'>
-          <button id='botao_finalizar_carrinho_modal' className='fonte_normal' onClick={fecharCarrinho}>Finalizar Compra</button>
+          <BotaoFinalizarCarrinhoModal onClick={fecharCarrinho}>Finalizar Compra</BotaoFinalizarCarrinhoModal>
         </Link>
-      </div>
-    </div>
-  </div>);
+      </DivTotalFinalizar>
+    </DivCarrinhoModal>
+  </DivCarrinhoModalOverlay>);
 }
+
+const DivCarrinhoModalOverlay = styled.div`
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${ ({theme}) => theme.cores.background.overlay };
+  backdrop-filter: blur(3px);
+  z-index: 128;
+`;
+
+const DivCarrinhoModal = styled.div`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  position: fixed;
+  
+  width: 310px;
+  right: 0;
+  top: 0;
+
+  background-color: ${ ({theme}) => theme.cores.background.primaria };
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+`;
+
+const DivBarraTituloCarrinho = styled.div`
+  display: flex;
+  border-bottom: 1px solid;
+  justify-content: space-between;
+  padding: 5px;
+`;
+
+const BotaoFecharCarrinho = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin-right: 10px;
+`;
+
+const DivItensCarrinhoModal = styled.div`
+  overflow-y: auto;
+  max-height: calc(100vh - 109px);
+`;
+
+const DivCentralizado = styled.div`
+  text-align: center;
+`;
+
+const DivTotalFinalizar = styled.div`
+  border-top: 1px solid;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const SpanValorTotal = styled.span`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+`;
+
+const BotaoFinalizarCarrinhoModal = styled.button`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.normal };
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
+  font-size: medium;
+  border: 0;
+  border-top: 1px solid;
+`;

@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import userEvent from '@testing-library/user-event';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
+import { renderComTema } from '../test-utils';
 
 const produto: IProduct = {
   id: 1,
@@ -37,7 +38,7 @@ jest.mock('../contexts/CartContext', () => ({
 }));
 
 function renderComProvedoresEProps() {
-  render(
+  renderComTema(
     <ProdutosContextProvider>
       <CarrinhoContextProvider>
         <CarrinhoModalItem produto={produto} itemCarrinho={mockItemCarrinho} />

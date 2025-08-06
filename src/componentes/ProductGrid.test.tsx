@@ -1,8 +1,9 @@
 import ProductGrid from './ProductGrid';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { SearchContextProvider } from '../contexts/SearchContext';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
+import { renderComTema } from '../test-utils';
 
 const mockDoisProdutos = [
   {
@@ -34,7 +35,7 @@ jest.mock('../services/productService', () => ({
 }));
 
 test('"ProductGrid" deve renderizar dois produtos', async () => {
-  render(
+  renderComTema(
     <ProdutosContextProvider>
       <SearchContextProvider>
         <CarrinhoContextProvider>
@@ -47,7 +48,7 @@ test('"ProductGrid" deve renderizar dois produtos', async () => {
 });
 
 test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async () => {
-  render(
+  renderComTema(
     <ProdutosContextProvider>
       <SearchContextProvider value={{search: 'UVA'}}>
         <CarrinhoContextProvider>
@@ -60,7 +61,7 @@ test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async (
 });
 
 test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma', async () => {
-  render(
+  renderComTema(
     <ProdutosContextProvider>
       <SearchContextProvider value={{search: 'magma'}}>
         <CarrinhoContextProvider>
