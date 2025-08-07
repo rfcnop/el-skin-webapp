@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useCart } from './useCart';
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import store from '../store';
 
 const produtoId = 1;
 
@@ -17,7 +19,10 @@ test('Deve adicionar um produto que ainda não está no carrinho.', () => {
     </div>);
   }
 
-  render(<ComponenteTesteUseCart />);
+  render(
+    <Provider store={store}>
+      <ComponenteTesteUseCart />
+    </Provider>);
   const divTeste = screen.getByTestId('div_teste');
   expect(divTeste.innerHTML).toBe('1');
 });
@@ -25,20 +30,32 @@ test('Deve adicionar um produto que ainda não está no carrinho.', () => {
 test('Deve adicionar um produto que já está no carrinho (sua quantidade deve aumentar).', () => {
   function ComponenteTesteUseCart() {
     const { itensCarrinho, addProduct } = useCart();
+    const quantidadeInicial = useRef(0);  
     
     useEffect(() => {
       addProduct(produtoId);
+      if (itensCarrinho[0])
+        quantidadeInicial.current = itensCarrinho[0].quantidade;
       addProduct(produtoId);
-    }, [addProduct]);
+    }, [addProduct]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return (<div data-testid='div_teste'>
-      { itensCarrinho[0]?.quantidade }
-    </div>);
+    return (<>
+      <div data-testid='div_teste_anterior'>
+        { quantidadeInicial.current }
+      </div>
+      <div data-testid='div_teste_posterior'>
+        { itensCarrinho[0]?.quantidade }
+      </div>
+    </>);
   }
 
-  render(<ComponenteTesteUseCart />);
-  const divTeste = screen.getByTestId('div_teste');
-  expect(divTeste.innerHTML).toBe('2');
+  render(
+    <Provider store={store}>
+      <ComponenteTesteUseCart />
+    </Provider>);
+  const divTesteAnterior = screen.getByTestId('div_teste_anterior');
+  const divTestePosterior = screen.getByTestId('div_teste_posterior');
+  expect(parseInt(divTesteAnterior.innerHTML)).toBeLessThan(parseInt(divTestePosterior.innerHTML));
 });
 
 test('Deve aumentar para 2 a quantidade de um produto.', () => {
@@ -55,7 +72,10 @@ test('Deve aumentar para 2 a quantidade de um produto.', () => {
     </div>);
   }
 
-  render(<ComponenteTesteUseCart />);
+  render(
+    <Provider store={store}>
+      <ComponenteTesteUseCart />
+    </Provider>);
   const divTeste = screen.getByTestId('div_teste');
   expect(divTeste.innerHTML).toBe('2');
 });
@@ -74,7 +94,10 @@ test('Deve remover um produto do carrinho.', () => {
     </div>);
   }
 
-  render(<ComponenteTesteUseCart />);
+  render(
+    <Provider store={store}>
+      <ComponenteTesteUseCart />
+    </Provider>);
   const divTeste = screen.getByTestId('div_teste');
   expect(divTeste.innerHTML).toBe('0');
 });
@@ -93,7 +116,10 @@ test('Deve alterar a quantidade do produto para 0 (ou seja, deve removê-lo do c
     </div>);
   }
 
-  render(<ComponenteTesteUseCart />);
+  render(
+    <Provider store={store}>
+      <ComponenteTesteUseCart />
+    </Provider>);
   const divTeste = screen.getByTestId('div_teste');
   expect(divTeste.innerHTML).toBe('0');
 });

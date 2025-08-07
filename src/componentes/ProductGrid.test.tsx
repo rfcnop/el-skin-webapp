@@ -1,7 +1,6 @@
 import ProductGrid from './ProductGrid';
 import { screen } from '@testing-library/react';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
-import { CarrinhoContextProvider } from '../contexts/CartContext';
 import { renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -52,9 +51,7 @@ test('"ProductGrid" deve renderizar dois produtos', async () => {
   renderComTema(
     <ProdutosContextProvider>
       <Provider store={store}>
-        <CarrinhoContextProvider>
-          <ProductGrid />
-        </CarrinhoContextProvider>
+        <ProductGrid />
       </Provider>
     </ProdutosContextProvider>);
   const divsComprar = await screen.findAllByText('Comprar');
@@ -66,9 +63,7 @@ test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async (
   renderComTema(
     <ProdutosContextProvider>
       <Provider store={storeUVA}>
-        <CarrinhoContextProvider>
-          <ProductGrid />
-        </CarrinhoContextProvider>
+        <ProductGrid />
       </Provider>
     </ProdutosContextProvider>);
   const divsComprar = await screen.findAllByText('Comprar');
@@ -80,9 +75,7 @@ test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma
   renderComTema(
     <ProdutosContextProvider>
       <Provider store={storeMagma}>
-        <CarrinhoContextProvider>
-          <ProductGrid />
-        </CarrinhoContextProvider>
+        <ProductGrid />
       </Provider>
     </ProdutosContextProvider>);
   const divNenhumProdutoEncontrado = await screen.findByText('Nenhum produto atende aos critérios de busca');

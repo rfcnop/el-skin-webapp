@@ -1,7 +1,7 @@
 import IProduct from '../types/IProduct';
 import sacola from '../assets/sacola.svg';
-import { useCarrinhoContext } from '../contexts/CartContext';
 import styled from 'styled-components';
+import { useCart } from '../hooks/useCart';
 
 function corDaTag(tag: string) {
   switch (tag) {
@@ -41,7 +41,7 @@ function corDaTag(tag: string) {
 }
 
 export default function ProductCard({ product } : { product: IProduct }) {
-  const { addProduct } = useCarrinhoContext();
+  const { addProduct } = useCart();
 
   return (
     <DivCardExterno>

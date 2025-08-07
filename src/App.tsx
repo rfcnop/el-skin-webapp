@@ -6,7 +6,6 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
-import { CarrinhoContextProvider } from './contexts/CartContext';
 import GlobalStyles from './styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import tema from './styles/theme';
@@ -18,16 +17,14 @@ function App() {
     <BrowserRouter>
       <ProdutosContextProvider>
         <Provider store={store}>
-          <CarrinhoContextProvider>
-            <GlobalStyles />
-            <Header />
-            <Routes>
-              <Route index path='/' element={<Home />} />
-              <Route path='/sobre' element={<About />} />
-              <Route path='/faleconosco' element={<FaleConosco />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </CarrinhoContextProvider>
+          <GlobalStyles />
+          <Header />
+          <Routes>
+            <Route index path='/' element={<Home />} />
+            <Route path='/sobre' element={<About />} />
+            <Route path='/faleconosco' element={<FaleConosco />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
         </Provider>
       </ProdutosContextProvider>
       <Footer />

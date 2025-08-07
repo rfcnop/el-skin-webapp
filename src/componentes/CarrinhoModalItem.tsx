@@ -1,8 +1,8 @@
 import '../types/IProduct';
-import { useCarrinhoContext } from '../contexts/CartContext';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import styled from 'styled-components';
+import { useCart } from '../hooks/useCart';
 
 const DivItemCarrinhoModal = styled.div`
   display: flex;
@@ -56,7 +56,7 @@ const BotaoRemoverItemCarrinhoModal = styled.div`
 `;
 
 export default function CarrinhoModalItem({produto, itemCarrinho} : {produto: IProduct, itemCarrinho: IItemCarrinho}) {
-  const { removeProduct, updateQuantidade } = useCarrinhoContext();
+  const { removeProduct, updateQuantidade } = useCart();
 
   return (
     <DivItemCarrinhoModal>

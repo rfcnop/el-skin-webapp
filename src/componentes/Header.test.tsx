@@ -9,8 +9,8 @@ import store from '../store';
 
 const mockItensCarrinho = [{id: 1, quantidade: 1}];
 
-jest.mock('../contexts/CartContext', () => ({
-  useCarrinhoContext: () => ({
+jest.mock('../hooks/useCart', () => ({
+  useCart: () => ({
     itensCarrinho: mockItensCarrinho
   }),
 }));

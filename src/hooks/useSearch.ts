@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch } from '../store/slices/searchSlice';
+import { StoreState } from '../store';
 
 export default function useSearch() {
   const dispatch = useDispatch();
-  const search = useSelector<{search: string}, string>(estado => estado.search);
+  const search = useSelector<StoreState, string>(estado => estado.search);
 
   return {
     search,

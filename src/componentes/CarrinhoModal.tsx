@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
-import { useCarrinhoContext } from '../contexts/CartContext';
 import { useProductsContext } from '../contexts/ProdutosContext';
 import { Link } from 'react-router-dom';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import styled from 'styled-components';
+import { useCart } from '../hooks/useCart';
 
 export default function CarrinhoModal() {
 
-  const { itensCarrinho } = useCarrinhoContext();
+  const { itensCarrinho } = useCart();
   const { products } = useProductsContext();
 
   const [valorTotal, setValorTotal] = useState(0);
