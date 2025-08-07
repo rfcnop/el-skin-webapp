@@ -7,16 +7,17 @@ import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
 import { ProdutosContextProvider } from './contexts/ProdutosContext';
 import { CarrinhoContextProvider } from './contexts/CartContext';
-import { SearchContextProvider } from './contexts/SearchContext';
 import GlobalStyles from './styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import tema from './styles/theme';
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 function App() {
   return (<ThemeProvider theme={tema}>
     <BrowserRouter>
       <ProdutosContextProvider>
-        <SearchContextProvider>
+        <Provider store={store}>
           <CarrinhoContextProvider>
             <GlobalStyles />
             <Header />
@@ -27,7 +28,7 @@ function App() {
               <Route path='*' element={<NotFound />} />
             </Routes>
           </CarrinhoContextProvider>
-        </SearchContextProvider>
+        </Provider>
       </ProdutosContextProvider>
       <Footer />
     </BrowserRouter>

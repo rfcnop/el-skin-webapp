@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import productService from '../services/productService';
 import IProduct from '../types/IProduct';
 import { useProductsContext } from '../contexts/ProdutosContext';
-import { useSearchContext } from '../contexts/SearchContext';
 import styled from 'styled-components';
+import useSearch from '../hooks/useSearch';
 
 export default function ProductGrid() {
   const { products, setProducts } = useProductsContext();
-  const { search } = useSearchContext();
+  const { search } = useSearch();
+  
   const [produtosBusca, setProdutosBusca] = useState<IProduct[]>([]);
 
   useEffect(

@@ -2,12 +2,12 @@ import lupa from '../assets/lupa.svg';
 import sacola from '../assets/sacola.svg';
 import { Link } from 'react-router-dom';
 import CarrinhoModal from './CarrinhoModal';
-import { useSearchContext } from '../contexts/SearchContext';
 import { useCarrinhoContext } from '../contexts/CartContext';
 import styled from 'styled-components';
+import useSearch from '../hooks/useSearch';
 
 export default function Header() {
-  const { search, setSearch } = useSearchContext();
+  const { search, setSearch } = useSearch();
   const { itensCarrinho } = useCarrinhoContext();
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {

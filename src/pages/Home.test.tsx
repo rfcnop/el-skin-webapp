@@ -1,15 +1,16 @@
 import { screen } from '@testing-library/react';
 import Home from './Home';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
-import { SearchContextProvider } from '../contexts/SearchContext';
 import { renderComTema } from '../test-utils';
+import { Provider } from 'react-redux';
+import store from '../store';
 
 test('Tela "Home" deve ser renderizada', () => {
   renderComTema(
     <ProdutosContextProvider>
-      <SearchContextProvider>
+      <Provider store={store}>
         <Home />
-      </SearchContextProvider>
+      </Provider>
     </ProdutosContextProvider>);
   expect(screen.getByTestId('main_home')).toBeInTheDocument();
 });

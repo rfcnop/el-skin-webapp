@@ -1,9 +1,11 @@
 import ProductGrid from './ProductGrid';
 import { screen } from '@testing-library/react';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
-import { SearchContextProvider } from '../contexts/SearchContext';
 import { CarrinhoContextProvider } from '../contexts/CartContext';
 import { renderComTema } from '../test-utils';
+import { Provider } from 'react-redux';
+import store from '../store';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const mockDoisProdutos = [
   {
@@ -34,40 +36,54 @@ jest.mock('../services/productService', () => ({
   getProdutos: async () => mockDoisProdutos
 }));
 
+function criarMockStoreComSearch(search: string) {
+  return configureStore({
+    reducer: {
+      search: createSlice({
+        name: 'search',
+        initialState: search,
+        reducers: { }
+      }).reducer
+    }
+  });
+}
+
 test('"ProductGrid" deve renderizar dois produtos', async () => {
   renderComTema(
     <ProdutosContextProvider>
-      <SearchContextProvider>
+      <Provider store={store}>
         <CarrinhoContextProvider>
           <ProductGrid />
         </CarrinhoContextProvider>
-      </SearchContextProvider>
+      </Provider>
     </ProdutosContextProvider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(2);
 });
 
 test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async () => {
+  const storeUVA = criarMockStoreComSearch('UVA');
   renderComTema(
     <ProdutosContextProvider>
-      <SearchContextProvider value={{search: 'UVA'}}>
+      <Provider store={storeUVA}>
         <CarrinhoContextProvider>
           <ProductGrid />
         </CarrinhoContextProvider>
-      </SearchContextProvider>
+      </Provider>
     </ProdutosContextProvider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(1);
 });
 
 test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma', async () => {
+  const storeMagma = criarMockStoreComSearch('magma');
   renderComTema(
     <ProdutosContextProvider>
-      <SearchContextProvider value={{search: 'magma'}}>
+      <Provider store={storeMagma}>
         <CarrinhoContextProvider>
           <ProductGrid />
         </CarrinhoContextProvider>
-      </SearchContextProvider>
+      </Provider>
     </ProdutosContextProvider>);
   const divNenhumProdutoEncontrado = await screen.findByText('Nenhum produto atende aos critérios de busca');
   expect(divNenhumProdutoEncontrado).toBeInTheDocument();
