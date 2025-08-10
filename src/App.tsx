@@ -11,7 +11,7 @@ import { CarrinhoContextProvider } from './contexts/CartContext';
 import { SearchContextProvider } from './contexts/SearchContext';
 
 function App() {
-  return <BrowserRouter>
+  return <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
     <ProdutosContextProvider>
       <SearchContextProvider>
         <CarrinhoContextProvider>

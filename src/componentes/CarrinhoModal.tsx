@@ -46,13 +46,13 @@ export default function CarrinhoModal() {
         {
           itensCarrinho.length ?
             itensCarrinho.map(
-              itemCarrinho => {
+              (itemCarrinho, index) => {
                 const produto = products.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
                   return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else
                   return (
-                    <div key={itemCarrinho.productId} style={{ textAlign: 'center' }}>
+                    <div key={index} style={{ textAlign: 'center' }}>
                       Produto não encontrado
                     </div>);
               }

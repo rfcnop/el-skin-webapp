@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Carousel from './Carousel';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react';
 
 const mockCarousel = [
   {
@@ -26,7 +27,7 @@ const mockCarousel = [
   }
 ];
 
-jest.mock('../services/backEnd', () => ({
+jest.mock('../services/backEnds', () => ({
   //...(jest.requireActual('../services/backEnd')),
   default: {
     async get(url: string) {
@@ -40,13 +41,13 @@ jest.mock('../services/backEnd', () => ({
 }));
 
 test('Deve carregar os três itens do carrossel.', async () => {
-  render(<Carousel />);
+  await act(async () => await render(<Carousel />));
   const itensCarrossel = await screen.findAllByTestId('div_item_carousel');
   expect(itensCarrossel).toHaveLength(3);
 });
 
 test('Deve mover o carrossel ao apertar o botão ">".', async () => {
-  render(<Carousel />);
+  await act(async () => await render(<Carousel />));
   const divWrapperCarousel = await screen.findByTestId('div_wrapper_carousel');
   const posicaoAnterior = divWrapperCarousel.scrollLeft;
   const botaoProximo = await screen.findByTestId('botao_carousel_proximo');
@@ -56,10 +57,10 @@ test('Deve mover o carrossel ao apertar o botão ">".', async () => {
 });
 
 test('Deve mover o carrossel com a passagem do tempo.', async () => {
-  render(<Carousel />);
+  await act(async () => await render(<Carousel />));
   const divWrapperCarousel = await screen.findByTestId('div_wrapper_carousel');
   const posicaoAnterior = divWrapperCarousel.scrollLeft;
-  await new Promise(resolve => setTimeout(resolve, 3500));
+  await act(async() => await new Promise(resolve => setTimeout(resolve, 3500)));
   const posicaoPosterior = divWrapperCarousel.scrollLeft;
   expect(posicaoAnterior).not.toBe(posicaoPosterior);
 });
