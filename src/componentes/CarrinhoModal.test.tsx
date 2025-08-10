@@ -3,15 +3,15 @@ import { screen } from '@testing-library/react';
 import CarrinhoModal from './CarrinhoModal';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import userEvent from '@testing-library/user-event';
-import { renderComTema } from '../test-utils';
-import store from '../store';
+import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 
 function renderComProvedores() {
+  const mockStore = criaMockDeStore();
   return renderComTema(
     <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
       <ProdutosContextProvider>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <CarrinhoModal />
         </Provider>
       </ProdutosContextProvider>

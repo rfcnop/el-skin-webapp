@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import tema from '../styles/theme';
 import { Provider } from 'react-redux';
-import store from '../store';
+import { criaMockDeStore } from '../test-utils';
 
 const mockItensCarrinho = [{id: 1, quantidade: 1}];
 
@@ -35,11 +35,12 @@ jest.mock('../contexts/ProdutosContext', () => ({
 }));
 
 function renderComProvedores() {
+  const mockStore = criaMockDeStore();
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento
     wrapper: ({children}) => (
       <ThemeProvider theme={tema}>
         <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-          <Provider store={store}>
+          <Provider store={mockStore}>
             { children }
           </Provider>
         </BrowserRouter>

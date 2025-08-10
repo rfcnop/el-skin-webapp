@@ -1,9 +1,8 @@
 import ProductGrid from './ProductGrid';
 import { screen } from '@testing-library/react';
 import { ProdutosContextProvider } from '../contexts/ProdutosContext';
-import { renderComTema } from '../test-utils';
+import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
-import store from '../store';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const mockDoisProdutos = [
@@ -48,9 +47,10 @@ function criarMockStoreComSearch(search: string) {
 }
 
 test('"ProductGrid" deve renderizar dois produtos', async () => {
+  const mockStore = criaMockDeStore();
   renderComTema(
     <ProdutosContextProvider>
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <ProductGrid />
       </Provider>
     </ProdutosContextProvider>);

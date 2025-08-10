@@ -2,9 +2,8 @@ import { screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import IProduct from '../types/IProduct';
 import userEvent from '@testing-library/user-event';
-import { renderComTema } from '../test-utils';
+import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
-import store from '../store';
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import IItemCarrinho from '../types/IItemCarrinho';
 
@@ -29,16 +28,18 @@ const produto: IProduct = {
 };
 
 test('"ProductCard" deve ser renderizada', () => {
+  const mockStore = criaMockDeStore();
   renderComTema(
-    <Provider store={store}>
+    <Provider store={mockStore}>
       <ProductCard product={produto} />
     </Provider>);
   expect(screen.getByText(produto.name)).toBeInTheDocument();
 });
 
 test('Todas as tags de "ProductCard" devem ser renderizadas', () => {
+  const mockStore = criaMockDeStore();
   renderComTema(
-    <Provider store={store}>
+    <Provider store={mockStore}>
       <ProductCard product={produto} />
     </Provider>);
   for (const tag of produto.tags)
@@ -46,9 +47,10 @@ test('Todas as tags de "ProductCard" devem ser renderizadas', () => {
 });
 
 test('Deve renderizar tag desconhecida com fundo preto', () => {
+  const mockStore = criaMockDeStore();
   const produtoComTagDesconhecida = {...produto, tags: [...produto.tags, 'toe']};
   renderComTema(
-    <Provider store={store}>
+    <Provider store={mockStore}>
       <ProductCard product={produtoComTagDesconhecida} />
     </Provider>);
   expect(screen.getByText('toe').style.backgroundColor).toBe('rgb(0, 0, 0)');

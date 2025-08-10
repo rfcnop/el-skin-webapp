@@ -14,7 +14,7 @@ import store from './store/index';
 
 function App() {
   return (<ThemeProvider theme={tema}>
-    <BrowserRouter>
+    <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
       <ProdutosContextProvider>
         <Provider store={store}>
           <GlobalStyles />
