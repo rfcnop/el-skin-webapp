@@ -24,20 +24,22 @@ const mockProdutos = [
     ]
   }];
 
-jest.mock('../services/backEnd', () => ({
+jest.mock('../services/backEnds', () => ({
   //...(jest.requireActual('../services/backEnd')),
   default: {
     async get(url: string) {
       if (url === 'products')
         return { data: mockProdutos };
-      else if (url.startsWith('products/')) {
-        const index = parseInt(url.split('/')[1]) - 1;
-        if (isNaN(index) || index < 0 || index >= mockProdutos.length)
-          return { data: 'id inválido' };
-        return { data: mockProdutos[index] };
+      else {
+        if (url.startsWith('products/')) {
+          const index = parseInt(url.split('/')[1]) - 1;
+          if (isNaN(index) || index < 0 || index >= mockProdutos.length)
+            return { data: 'id inválido' };
+          return { data: mockProdutos[index] };
+        }
+        else
+          return { data: 'sem dados :)' };
       }
-      else
-        return { data: 'sem dados :)' };
     },
   },
   __esModule: true

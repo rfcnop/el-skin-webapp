@@ -21,8 +21,7 @@ const LinkFooter = styled(Link)`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: ${ ({theme}) => theme.fontWeight.normal };
-
-      font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
+  font-size: ${ ({theme}) => theme.tamanhoFonte.normal };
   line-height: 24px;
 
   text-align: center;
