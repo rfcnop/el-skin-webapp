@@ -1,37 +1,19 @@
 import ProductCard from './ProductCard';
-import { useEffect, useState } from 'react';
-import productService from '../services/productService';
-import IProduct from '../types/IProduct';
-import { useProductsContext } from '../contexts/ProdutosContext';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import useSearch from '../hooks/useSearch';
+import useProducts from '../hooks/useProducts';
 
 export default function ProductGrid() {
-  const { products, setProducts } = useProductsContext();
+  const { produtos, loadProducts, filteredProducts } = useProducts();
   const { search } = useSearch();
+  const produtosBusca = filteredProducts(search);
   
-  const [produtosBusca, setProdutosBusca] = useState<IProduct[]>([]);
-
   useEffect(
     () => {
-      (async function() {
-        const produtos = await productService.getProdutos();
-        setProducts(produtos);
-      })();
-    }, [setProducts]
-  );
-
-  useEffect (
-    () => {
-      const lowerCaseSearch = search.toLowerCase();
-      setProdutosBusca(
-        produtosBusca => products.filter(
-          produto => produto.name.toLowerCase().includes(lowerCaseSearch) ||
-            produto.description.toLowerCase().includes(lowerCaseSearch) ||
-            produto.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearch))
-        )
-      );
-    }, [search, products]
+      if (!produtos.length)
+        loadProducts();
+    }, [produtos.length, loadProducts]
   );
 
   return (<DivShowcase>

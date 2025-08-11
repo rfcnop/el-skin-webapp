@@ -1,9 +1,9 @@
 import ProductGrid from './ProductGrid';
 import { screen } from '@testing-library/react';
-import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import productsSliceReducer from '../store/slices/productsSlice';
 
 const mockDoisProdutos = [
   {
@@ -41,7 +41,8 @@ function criarMockStoreComSearch(search: string) {
         name: 'search',
         initialState: search,
         reducers: { }
-      }).reducer
+      }).reducer,
+      products: productsSliceReducer
     }
   });
 }
@@ -49,11 +50,9 @@ function criarMockStoreComSearch(search: string) {
 test('"ProductGrid" deve renderizar dois produtos', async () => {
   const mockStore = criaMockDeStore();
   renderComTema(
-    <ProdutosContextProvider>
-      <Provider store={mockStore}>
-        <ProductGrid />
-      </Provider>
-    </ProdutosContextProvider>);
+    <Provider store={mockStore}>
+      <ProductGrid />
+    </Provider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(2);
 });
@@ -61,11 +60,9 @@ test('"ProductGrid" deve renderizar dois produtos', async () => {
 test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async () => {
   const storeUVA = criarMockStoreComSearch('UVA');
   renderComTema(
-    <ProdutosContextProvider>
-      <Provider store={storeUVA}>
-        <ProductGrid />
-      </Provider>
-    </ProdutosContextProvider>);
+    <Provider store={storeUVA}>
+      <ProductGrid />
+    </Provider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(1);
 });
@@ -73,11 +70,9 @@ test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async (
 test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma', async () => {
   const storeMagma = criarMockStoreComSearch('magma');
   renderComTema(
-    <ProdutosContextProvider>
-      <Provider store={storeMagma}>
-        <ProductGrid />
-      </Provider>
-    </ProdutosContextProvider>);
+    <Provider store={storeMagma}>
+      <ProductGrid />
+    </Provider>);
   const divNenhumProdutoEncontrado = await screen.findByText('Nenhum produto atende aos critérios de busca');
   expect(divNenhumProdutoEncontrado).toBeInTheDocument();
 });

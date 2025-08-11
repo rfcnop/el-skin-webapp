@@ -3,7 +3,6 @@ import CarrinhoModalItem from './CarrinhoModalItem';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import userEvent from '@testing-library/user-event';
-import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 
@@ -40,12 +39,9 @@ jest.mock('../hooks/useCart', () => ({
 function renderComProvedoresEProps() {
   const mockStore = criaMockDeStore();
   renderComTema(
-    <ProdutosContextProvider>
-      <Provider store={mockStore}>
-        <CarrinhoModalItem produto={produto} itemCarrinho={mockItemCarrinho} />
-      </Provider>
-    </ProdutosContextProvider>
-  );
+    <Provider store={mockStore}>
+      <CarrinhoModalItem produto={produto} itemCarrinho={mockItemCarrinho} />
+    </Provider>);
 }
 
 test('Deve chamar a função updateQuantidade para aumentar em 1 a quantidade do produto no carrinho', () => {

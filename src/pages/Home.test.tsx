@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
 import Home from './Home';
-import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import { renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import { criaMockDeStore } from '../test-utils';
@@ -76,10 +75,8 @@ test('Tela "Home" deve ser renderizada', async () => {
   const mockStore = criaMockDeStore();
 
   await act(async () => await renderComTema(
-    <ProdutosContextProvider>
-      <Provider store={mockStore}>
-        <Home />
-      </Provider>
-    </ProdutosContextProvider>));
+    <Provider store={mockStore}>
+      <Home />
+    </Provider>));
   expect(await screen.findByTestId('main_home')).toBeInTheDocument();
 });

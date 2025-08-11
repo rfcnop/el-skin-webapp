@@ -1,21 +1,9 @@
-import { act, ReactNode } from 'react';
+import { act } from 'react';
 import { useCart } from './useCart';
 import { renderHook } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { criaMockDeStore } from '../test-utils';
+import { criaMockDeStore, criaProviderWrapper } from '../test-utils';
 
 const produtoId = 1;
-
-const criaProviderWrapper = (store: ReturnType<typeof criaMockDeStore>) => {
-  const wrapper = ({ children }: { children: ReactNode }) =>
-    (
-      <Provider store={store}>
-        {children}
-      </Provider>
-    );
-  wrapper.displayName = 'Wrapper de <Provider store={?}>';
-  return wrapper;
-};
 
 test('Deve adicionar um produto que ainda não está no carrinho.', () => {
   const wrapper = criaProviderWrapper(criaMockDeStore());

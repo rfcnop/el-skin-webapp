@@ -1,24 +1,23 @@
 import { useMemo, useState } from 'react';
-import { useProductsContext } from '../contexts/ProdutosContext';
 import { Link } from 'react-router-dom';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import styled from 'styled-components';
 import { useCart } from '../hooks/useCart';
+import useProducts from '../hooks/useProducts';
 
 export default function CarrinhoModal() {
-
   const { itensCarrinho } = useCart();
-  const { products } = useProductsContext();
+  const { produtos } = useProducts();
 
   const [valorTotal, setValorTotal] = useState(0);
 
   useMemo(() => setValorTotal(
     itensCarrinho.reduce(
       (valorAcumulado, itemAtual) => {
-        const produto = products.find(produto => produto.id === itemAtual.productId);
+        const produto = produtos.find(produto => produto.id === itemAtual.productId);
         return valorAcumulado + itemAtual.quantidade * (produto ? produto.price : 0);
       } , 0)
-  ), [itensCarrinho, products]);
+  ), [itensCarrinho, produtos]);
 
   function onClickBotaoFecharCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.stopPropagation();
@@ -47,7 +46,7 @@ export default function CarrinhoModal() {
           itensCarrinho.length ?
             itensCarrinho.map(
               (itemCarrinho, index) => {
-                const produto = products.find(produto => produto.id === itemCarrinho.productId);
+                const produto = produtos.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
                   return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else

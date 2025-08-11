@@ -15,25 +15,6 @@ jest.mock('../hooks/useCart', () => ({
   }),
 }));
 
-const mockProducts = [
-  {
-    id: 1,
-    name: 'Creme Hidratante Facial',
-    description: 'Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.',
-    price: 45.99,
-    image: '/assets/prod1.jpg',
-    tags: [
-      'face',
-      'hydration'
-    ]
-  }];
-
-jest.mock('../contexts/ProdutosContext', () => ({
-  useProductsContext: () => ({
-    products: mockProducts
-  })
-}));
-
 function renderComProvedores() {
   const mockStore = criaMockDeStore();
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento
