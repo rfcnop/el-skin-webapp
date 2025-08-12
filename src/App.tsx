@@ -5,30 +5,25 @@ import Footer from './componentes/Footer';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import FaleConosco from './pages/FaleConosco';
-import { ProdutosContextProvider } from './contexts/ProdutosContext';
-import { CarrinhoContextProvider } from './contexts/CartContext';
-import { SearchContextProvider } from './contexts/SearchContext';
 import GlobalStyles from './styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import tema from './styles/theme';
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 function App() {
   return (<ThemeProvider theme={tema}>
-    <BrowserRouter>
-      <ProdutosContextProvider>
-        <SearchContextProvider>
-          <CarrinhoContextProvider>
-            <GlobalStyles />
-            <Header />
-            <Routes>
-              <Route index path='/' element={<Home />} />
-              <Route path='/sobre' element={<About />} />
-              <Route path='/faleconosco' element={<FaleConosco />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </CarrinhoContextProvider>
-        </SearchContextProvider>
-      </ProdutosContextProvider>
+    <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
+      <Provider store={store}>
+        <GlobalStyles />
+        <Header />
+        <Routes>
+          <Route index path='/' element={<Home />} />
+          <Route path='/sobre' element={<About />} />
+          <Route path='/faleconosco' element={<FaleConosco />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Provider>
       <Footer />
     </BrowserRouter>
   </ThemeProvider>);

@@ -1,8 +1,31 @@
 import '../types/IProduct';
-import { useCarrinhoContext } from '../contexts/CartContext';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import styled from 'styled-components';
+import { useCart } from '../hooks/useCart';
+
+export default function CarrinhoModalItem({produto, itemCarrinho} : {produto: IProduct, itemCarrinho: IItemCarrinho}) {
+  const { removeProduct, updateQuantidade } = useCart();
+
+  return (
+    <DivItemCarrinhoModal>
+      <DivImagemItemCarrinhoModal>
+        <ImagemItemCarrinho src={produto?.image} alt={produto?.name} />
+      </DivImagemItemCarrinhoModal>
+      <DivInfoItemCarrinhoModal>
+        <SpanNegrito>{produto?.name}</SpanNegrito><br />
+        Quantidade: <span data-testid='quantidade_item_carrinho_modal'>{ itemCarrinho.quantidade }</span>
+        <DivBotoesQuantidadeItemCarrinhoModal>
+          <BotaoQuantidadeItemCarrinhoModal data-testid='botao_quantidade_item_carrinho_modal_menos' onClick={e => {e.stopPropagation(); document.getElementById('div_carrinho_modal_overlay')?.focus(); updateQuantidade(produto ? produto.id : -1, itemCarrinho.quantidade - 1); }}>-</BotaoQuantidadeItemCarrinhoModal>
+          <BotaoQuantidadeItemCarrinhoModal data-testid='botao_quantidade_item_carrinho_modal_mais' onClick={e => {e.stopPropagation(); updateQuantidade(produto ? produto.id : -1, itemCarrinho.quantidade + 1); }}>+</BotaoQuantidadeItemCarrinhoModal>
+        </DivBotoesQuantidadeItemCarrinhoModal><br />
+        <SpanNegrito>R$ {produto?.price.toFixed(2).replace('.', ',')}</SpanNegrito>
+      </DivInfoItemCarrinhoModal>
+      <DivRemoveItemCarrinhoModal>
+        <BotaoRemoverItemCarrinhoModal data-testid='botao_item_remover_carrinho_modal' onClick={e => {e.stopPropagation(); document.getElementById('div_carrinho_modal_overlay')?.focus(); removeProduct(produto ? produto.id : -1); }}>🗑️</BotaoRemoverItemCarrinhoModal>
+      </DivRemoveItemCarrinhoModal>
+    </DivItemCarrinhoModal>);
+}
 
 const DivItemCarrinhoModal = styled.div`
   display: flex;
@@ -54,26 +77,3 @@ const BotaoRemoverItemCarrinhoModal = styled.div`
   border-radius: ${ ({theme}) => theme.borderRadius.pequeno };
   cursor: pointer;
 `;
-
-export default function CarrinhoModalItem({produto, itemCarrinho} : {produto: IProduct, itemCarrinho: IItemCarrinho}) {
-  const { removeProduct, updateQuantidade } = useCarrinhoContext();
-
-  return (
-    <DivItemCarrinhoModal>
-      <DivImagemItemCarrinhoModal>
-        <ImagemItemCarrinho src={produto?.image} alt={produto?.name} />
-      </DivImagemItemCarrinhoModal>
-      <DivInfoItemCarrinhoModal>
-        <SpanNegrito>{produto?.name}</SpanNegrito><br />
-        Quantidade: <span data-testid='quantidade_item_carrinho_modal'>{ itemCarrinho.quantidade }</span>
-        <DivBotoesQuantidadeItemCarrinhoModal>
-          <BotaoQuantidadeItemCarrinhoModal data-testid='botao_quantidade_item_carrinho_modal_menos' onClick={e => {e.stopPropagation(); document.getElementById('div_carrinho_modal_overlay')?.focus(); updateQuantidade(produto ? produto.id : -1, itemCarrinho.quantidade - 1); }}>-</BotaoQuantidadeItemCarrinhoModal>
-          <BotaoQuantidadeItemCarrinhoModal data-testid='botao_quantidade_item_carrinho_modal_mais' onClick={e => {e.stopPropagation(); updateQuantidade(produto ? produto.id : -1, itemCarrinho.quantidade + 1); }}>+</BotaoQuantidadeItemCarrinhoModal>
-        </DivBotoesQuantidadeItemCarrinhoModal><br />
-        <SpanNegrito>R$ {produto?.price.toFixed(2).replace('.', ',')}</SpanNegrito>
-      </DivInfoItemCarrinhoModal>
-      <DivRemoveItemCarrinhoModal>
-        <BotaoRemoverItemCarrinhoModal data-testid='botao_item_remover_carrinho_modal' onClick={e => {e.stopPropagation(); document.getElementById('div_carrinho_modal_overlay')?.focus(); removeProduct(produto ? produto.id : -1); }}>🗑️</BotaoRemoverItemCarrinhoModal>
-      </DivRemoveItemCarrinhoModal>
-    </DivItemCarrinhoModal>);
-}

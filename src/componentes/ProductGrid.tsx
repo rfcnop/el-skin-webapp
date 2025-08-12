@@ -1,26 +1,16 @@
 import ProductCard from './ProductCard';
-import { useEffect, useState } from 'react';
-import productService from '../services/productService';
-import IProduct from '../types/IProduct';
-import { useProductsContext } from '../contexts/ProdutosContext';
-import { useSearchContext } from '../contexts/SearchContext';
 import styled from 'styled-components';
+import useSearch from '../hooks/useSearch';
+import { useGetProductsQuery } from '../store/api/apiSlice';
+import { useEffect, useState } from 'react';
+import IProduct from '../types/IProduct';
 
 export default function ProductGrid() {
-  const { products, setProducts } = useProductsContext();
-  const { search } = useSearchContext();
   const [produtosBusca, setProdutosBusca] = useState<IProduct[]>([]);
+  const { data: products = [], isLoading, error } = useGetProductsQuery();
+  const { search } = useSearch();
 
   useEffect(
-    () => {
-      (async function() {
-        const produtos = await productService.getProdutos();
-        setProducts(produtos);
-      })();
-    }, [setProducts]
-  );
-
-  useEffect (
     () => {
       const lowerCaseSearch = search.toLowerCase();
       setProdutosBusca(
@@ -36,11 +26,13 @@ export default function ProductGrid() {
   return (<DivShowcase>
     <br />
     <DivTituloShowcase id='resultado_da_busca'>
-      { produtosBusca.length ? 'nossos queridinhos estão aqui' : 'Nenhum produto atende aos critérios de busca'}
+      { isLoading && 'Carregando produtos...' }
+      { error && (<DivErro>Erro ao carregar produtos: { JSON.stringify(error) } </DivErro>) }
+      { !isLoading && !error && (produtosBusca.length ? 'nossos queridinhos estão aqui' : 'Nenhum produto atende aos critérios de busca') }
     </DivTituloShowcase>
     <br />
     <br />
-    <DivListaDeProdutos>
+    { !isLoading && !error && (<DivListaDeProdutos>
       {
         [
           produtosBusca.map(
@@ -48,7 +40,8 @@ export default function ProductGrid() {
           )
         ]
       }
-    </DivListaDeProdutos>
+    </DivListaDeProdutos>)
+    }
   </DivShowcase>);
 }
 
@@ -72,6 +65,20 @@ const DivTituloShowcase = styled.div`
   text-transform: lowercase;
   
   color: ${ ({theme}) => theme.cores.texto.primaria };
+`;
+
+const DivErro = styled.div`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
+  line-height: 30px;
+
+  text-align: center;
+  text-transform: lowercase;
+  
+  color: ${ ({theme}) => theme.cores.texto.erro };
 `;
 
 const DivListaDeProdutos = styled.div`

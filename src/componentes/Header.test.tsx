@@ -1,20 +1,45 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { SearchContextProvider } from '../contexts/SearchContext';
 import Header from './Header';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import tema from '../styles/theme';
+import { Provider } from 'react-redux';
+import { criaMockDeStore } from '../test-utils';
 
 const mockItensCarrinho = [{id: 1, quantidade: 1}];
 
-jest.mock('../contexts/CartContext', () => ({
-  useCarrinhoContext: () => ({
+jest.mock('../hooks/useCart', () => ({
+  useCart: () => ({
     itensCarrinho: mockItensCarrinho
   }),
 }));
 
-const mockProducts = [
+const mockCarousel = [
+  {
+    id: 1,
+    subtitle: 'confira nossa linha',
+    title: 'corporal',
+    description: 'com benefícios além da hidratação',
+    backgroundImage: '/assets/img1.png'
+  },
+  {
+    id: 2,
+    subtitle: 'toda linha',
+    title: 'anti-age',
+    description: 'use o cupom ANTIAGE15',
+    backgroundImage: '/assets/img2.png'
+  },
+  {
+    id: 3,
+    subtitle: '',
+    title: 'kits incríveis',
+    description: 'até 50% OFF',
+    backgroundImage: '/assets/img3.png'
+  }
+];
+
+const mockDoisProdutos = [
   {
     id: 1,
     name: 'Creme Hidratante Facial',
@@ -25,22 +50,33 @@ const mockProducts = [
       'face',
       'hydration'
     ]
+  },
+  {
+    id: 2,
+    name: 'Protetor Solar SPF 50',
+    description: 'Protetor solar de alta proteção contra raios UVA/UVB, resistente à água.',
+    price: 89.90,
+    image: '/assets/prod2.jpg',
+    tags: [
+      'protection',
+      'sun'
+    ]
   }];
 
-jest.mock('../contexts/ProdutosContext', () => ({
-  useProductsContext: () => ({
-    products: mockProducts
-  })
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null }),
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
 }));
 
 function renderComProvedores() {
+  const mockStore = criaMockDeStore();
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento
     wrapper: ({children}) => (
       <ThemeProvider theme={tema}>
         <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-          <SearchContextProvider>
+          <Provider store={mockStore}>
             { children }
-          </SearchContextProvider>
+          </Provider>
         </BrowserRouter>
       </ThemeProvider>)
   });

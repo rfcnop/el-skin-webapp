@@ -1,24 +1,29 @@
-import { useMemo, useState } from 'react';
-import { useCarrinhoContext } from '../contexts/CartContext';
-import { useProductsContext } from '../contexts/ProdutosContext';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import styled from 'styled-components';
+import { useCart } from '../hooks/useCart';
+import { useGetProductsQuery } from '../store/api/apiSlice';
+import IProduct from '../types/IProduct';
 
 export default function CarrinhoModal() {
-
-  const { itensCarrinho } = useCarrinhoContext();
-  const { products } = useProductsContext();
-
+  const { itensCarrinho } = useCart();
+  const { data: products = [], isLoading } = useGetProductsQuery();
+  const [produtos, setProdutos] = useState<IProduct[]>([]);
   const [valorTotal, setValorTotal] = useState(0);
+
+  useEffect(() => {
+    if (!isLoading)
+      setProdutos(products);
+  }, [isLoading, products]);
 
   useMemo(() => setValorTotal(
     itensCarrinho.reduce(
       (valorAcumulado, itemAtual) => {
-        const produto = products.find(produto => produto.id === itemAtual.productId);
+        const produto = produtos.find(produto => produto.id === itemAtual.productId);
         return valorAcumulado + itemAtual.quantidade * (produto ? produto.price : 0);
       } , 0)
-  ), [itensCarrinho, products]);
+  ), [itensCarrinho, produtos]);
 
   function onClickBotaoFecharCarrinho(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.stopPropagation();
@@ -47,7 +52,7 @@ export default function CarrinhoModal() {
           itensCarrinho.length ?
             itensCarrinho.map(
               (itemCarrinho, index) => {
-                const produto = products.find(produto => produto.id === itemCarrinho.productId);
+                const produto = produtos.find(produto => produto.id === itemCarrinho.productId);
                 if (produto)
                   return <CarrinhoModalItem key={itemCarrinho.productId} produto={produto} itemCarrinho={itemCarrinho} />;
                 else

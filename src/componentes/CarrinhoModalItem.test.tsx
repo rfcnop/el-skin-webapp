@@ -1,11 +1,10 @@
 import { screen } from '@testing-library/react';
-import { CarrinhoContextProvider } from '../contexts/CartContext';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import userEvent from '@testing-library/user-event';
-import { ProdutosContextProvider } from '../contexts/ProdutosContext';
-import { renderComTema } from '../test-utils';
+import { criaMockDeStore, renderComTema } from '../test-utils';
+import { Provider } from 'react-redux';
 
 const produto: IProduct = {
   id: 1,
@@ -28,9 +27,9 @@ const mockUpdateQuantidade = jest.fn();
 
 const mockRemoveProduct = jest.fn();
 
-jest.mock('../contexts/CartContext', () => ({
-  ...jest.requireActual('../contexts/CartContext'),
-  useCarrinhoContext: () => ({
+jest.mock('../hooks/useCart', () => ({
+  ...jest.requireActual('../hooks/useCart'),
+  useCart: () => ({
     itensCarrinho: mockItemCarrinho,
     updateQuantidade: mockUpdateQuantidade,
     removeProduct: mockRemoveProduct
@@ -38,13 +37,11 @@ jest.mock('../contexts/CartContext', () => ({
 }));
 
 function renderComProvedoresEProps() {
+  const mockStore = criaMockDeStore();
   renderComTema(
-    <ProdutosContextProvider>
-      <CarrinhoContextProvider>
-        <CarrinhoModalItem produto={produto} itemCarrinho={mockItemCarrinho} />
-      </CarrinhoContextProvider>
-    </ProdutosContextProvider>
-  );
+    <Provider store={mockStore}>
+      <CarrinhoModalItem produto={produto} itemCarrinho={mockItemCarrinho} />
+    </Provider>);
 }
 
 test('Deve chamar a função updateQuantidade para aumentar em 1 a quantidade do produto no carrinho', () => {

@@ -1,9 +1,11 @@
 import { screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import IProduct from '../types/IProduct';
-import { CarrinhoContextProvider } from '../contexts/CartContext';
 import userEvent from '@testing-library/user-event';
-import { renderComTema } from '../test-utils';
+import { criaMockDeStore, renderComTema } from '../test-utils';
+import { Provider } from 'react-redux';
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import IItemCarrinho from '../types/IItemCarrinho';
 
 const produto: IProduct = {
   id: 1,
@@ -26,37 +28,52 @@ const produto: IProduct = {
 };
 
 test('"ProductCard" deve ser renderizada', () => {
+  const mockStore = criaMockDeStore();
   renderComTema(
-    <CarrinhoContextProvider>
+    <Provider store={mockStore}>
       <ProductCard product={produto} />
-    </CarrinhoContextProvider>);
+    </Provider>);
   expect(screen.getByText(produto.name)).toBeInTheDocument();
 });
 
 test('Todas as tags de "ProductCard" devem ser renderizadas', () => {
+  const mockStore = criaMockDeStore();
   renderComTema(
-    <CarrinhoContextProvider>
+    <Provider store={mockStore}>
       <ProductCard product={produto} />
-    </CarrinhoContextProvider>);
+    </Provider>);
   for (const tag of produto.tags)
     expect(screen.getByText(tag)).toBeInTheDocument();
 });
 
 test('Deve renderizar tag desconhecida com fundo preto', () => {
+  const mockStore = criaMockDeStore();
   const produtoComTagDesconhecida = {...produto, tags: [...produto.tags, 'toe']};
   renderComTema(
-    <CarrinhoContextProvider>
+    <Provider store={mockStore}>
       <ProductCard product={produtoComTagDesconhecida} />
-    </CarrinhoContextProvider>);
+    </Provider>);
   expect(screen.getByText('toe').style.backgroundColor).toBe('rgb(0, 0, 0)');
 });
 
 test('Deve adicionar produto ao carrinho quando o botão for clicado', () => {
   const addProduct = jest.fn();
+  const storeAddProduto = configureStore({
+    reducer: {
+      cart: createSlice({
+        name: 'cart',
+        initialState: [],
+        reducers: {
+          addProduto: (state, action: PayloadAction<IItemCarrinho>) => addProduct(action.payload.productId)
+        }
+      }).reducer
+    }
+  });
+
   renderComTema(
-    <CarrinhoContextProvider value={{addProduct}}>
+    <Provider store={storeAddProduto}>
       <ProductCard product={produto} />
-    </CarrinhoContextProvider>);
+    </Provider>);
     
   const botaoComprar = screen.getByTestId('botao_comprar');
   userEvent.click(botaoComprar);

@@ -1,19 +1,45 @@
 import { BrowserRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 import CarrinhoModal from './CarrinhoModal';
-import { CarrinhoContextProvider } from '../contexts/CartContext';
-import { ProdutosContextProvider } from '../contexts/ProdutosContext';
 import userEvent from '@testing-library/user-event';
-import { renderComTema } from '../test-utils';
+import { criaMockDeStore, renderComTema } from '../test-utils';
+import { Provider } from 'react-redux';
+
+const mockDoisProdutos = [
+  {
+    id: 1,
+    name: 'Creme Hidratante Facial',
+    description: 'Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.',
+    price: 45.99,
+    image: '/assets/prod1.jpg',
+    tags: [
+      'face',
+      'hydration'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Protetor Solar SPF 50',
+    description: 'Protetor solar de alta proteção contra raios UVA/UVB, resistente à água.',
+    price: 89.90,
+    image: '/assets/prod2.jpg',
+    tags: [
+      'protection',
+      'sun'
+    ]
+  }];
+
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
+}));
 
 function renderComProvedores() {
+  const mockStore = criaMockDeStore();
   return renderComTema(
     <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-      <ProdutosContextProvider>
-        <CarrinhoContextProvider>
-          <CarrinhoModal />
-        </CarrinhoContextProvider>
-      </ProdutosContextProvider>
+      <Provider store={mockStore}>
+        <CarrinhoModal />
+      </Provider>
     </BrowserRouter>);
 }
 

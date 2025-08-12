@@ -6,7 +6,8 @@ const tema = {
       terciaria: '#FFF',
       quaternaria: '#878787',
       carrossel: '#94426E',
-      promocao: '#DC5E5E'
+      promocao: '#DC5E5E',
+      erro: 'red'
     },
     background: {
       primaria: '#FFF',
