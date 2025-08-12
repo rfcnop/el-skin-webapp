@@ -5,6 +5,34 @@ import userEvent from '@testing-library/user-event';
 import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 
+const mockDoisProdutos = [
+  {
+    id: 1,
+    name: 'Creme Hidratante Facial',
+    description: 'Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.',
+    price: 45.99,
+    image: '/assets/prod1.jpg',
+    tags: [
+      'face',
+      'hydration'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Protetor Solar SPF 50',
+    description: 'Protetor solar de alta proteção contra raios UVA/UVB, resistente à água.',
+    price: 89.90,
+    image: '/assets/prod2.jpg',
+    tags: [
+      'protection',
+      'sun'
+    ]
+  }];
+
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
+}));
+
 function renderComProvedores() {
   const mockStore = criaMockDeStore();
   return renderComTema(

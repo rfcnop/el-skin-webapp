@@ -2,24 +2,13 @@ import imgAnterior from '../assets/carousel/anterior.svg';
 import imgProximo from '../assets/carousel/proximo.svg';
 import { useCallback, useEffect, useState } from 'react';
 import CarouselItem from './CarouselItem';
-import ICarouselItem from '../types/ICarouselItem';
-import backEnd from '../services/backEnd';
 import styled from 'styled-components';
+import { useGetCarouselItemsQuery } from '../store/api/apiSlice';
 
 export default function Carousel() {
   const [momentoUltimaMudancaCarrossel, setMomentoUltimaMudancaCarrossel] = useState(Date.now());
   const [scrollTarget, setScrollTarget] = useState(0);
-
-  const [ carouselItems, setCarouselItems ] = useState<ICarouselItem[]>([]);
-
-  useEffect(
-    () => {
-      (async function() {
-        const resposta = await backEnd.get<ICarouselItem[]>('carousel');
-        setCarouselItems(resposta.data);
-      })();
-    }, []
-  );
+  const { data: carouselItems = [], isLoading, error} = useGetCarouselItemsQuery();
 
   const carouselMove = useCallback(
     function (forward = true) {
@@ -57,7 +46,9 @@ export default function Carousel() {
     <DivPromocional>
       <SpanPrimeiraCompra>primeira compra?</SpanPrimeiraCompra><SpanReaisOff><b>R$25 OFF</b> A PARTIR DE <b>R$ 200</b></SpanReaisOff><BotaoPrimeira25 >PRIMEIRA25</BotaoPrimeira25>
     </DivPromocional>
-    <DivCarousel>
+    { isLoading && <DivCarregando>Carregando o carrossel...</DivCarregando> }
+    { error && <DivErro>Erro ao carregar o carrossel: { JSON.stringify(error) } </DivErro> }
+    { !isLoading && !error && (<DivCarousel>
       <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior} alt='Ir para imagem anterior' /></BotaoAnterior>
       <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo} alt='Ir para imagem posterior' /></BotaoProximo>
       <DivWrapperCarousel data-testid='div_wrapper_carousel' id='div_wrapper_carousel'>
@@ -67,7 +58,8 @@ export default function Carousel() {
           ]
         }
       </DivWrapperCarousel>
-    </DivCarousel>
+    </DivCarousel>)
+    }
   </>);
 }
 
@@ -117,6 +109,38 @@ const BotaoPrimeira25 = styled.button`
   cursor: pointer;
 
   color: ${ ({theme}) => theme.cores.texto.secundaria };
+`;
+
+const DivCarregando = styled.div`
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
+  line-height: 30px;
+
+  text-align: center;
+  text-transform: lowercase;
+  
+  color: ${ ({theme}) => theme.cores.texto.primaria };
+`;
+
+const DivErro = styled.div`
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: ${ ({theme}) => theme.fontWeight.bold };
+
+  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
+  line-height: 30px;
+
+  text-align: center;
+  text-transform: lowercase;
+  
+  color: ${ ({theme}) => theme.cores.texto.erro };
 `;
 
 const DivCarousel = styled.div`

@@ -28,7 +28,7 @@ const mockCarousel = [
   }
 ];
 
-jest.mock('../services/backEnd', () => ({
+/*jest.mock('../services/backEnd', () => ({
   //...(jest.requireActual('../services/backEnd')),
   default: {
     async get(url: string) {
@@ -39,6 +39,9 @@ jest.mock('../services/backEnd', () => ({
     },
   },
   __esModule: true
+}));*/
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null })
 }));
 
 test('Deve carregar os três itens do carrossel.', async () => {

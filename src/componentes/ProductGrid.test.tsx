@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import { criaMockDeStore, renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import productsSliceReducer from '../store/slices/productsSlice';
 
 const mockDoisProdutos = [
   {
@@ -29,9 +28,12 @@ const mockDoisProdutos = [
     ]
   }];
 
-jest.mock('../services/productService', () => ({
+/*jest.mock('../services/productService', () => ({
   //...(jest.requireActual('../services/productService')),
   getProdutos: async () => mockDoisProdutos
+}));*/
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
 }));
 
 function criarMockStoreComSearch(search: string) {
@@ -41,8 +43,7 @@ function criarMockStoreComSearch(search: string) {
         name: 'search',
         initialState: search,
         reducers: { }
-      }).reducer,
-      products: productsSliceReducer
+      }).reducer
     }
   });
 }

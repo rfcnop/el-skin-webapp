@@ -29,7 +29,7 @@ const mockCarousel = [
   }
 ];
 
-jest.mock('../services/backEnd', () => ({
+/*jest.mock('../services/backEnd', () => ({
   //...(jest.requireActual('../services/backEnd')),
   default: {
     async get(url: string) {
@@ -40,7 +40,7 @@ jest.mock('../services/backEnd', () => ({
     },
   },
   __esModule: true
-}));
+}));*/
 
 const mockDoisProdutos = [
   {
@@ -66,9 +66,14 @@ const mockDoisProdutos = [
     ]
   }];
 
-jest.mock('../services/productService', () => ({
+/*jest.mock('../services/productService', () => ({
   //...(jest.requireActual('../services/productService')),
   getProdutos: async () => mockDoisProdutos
+}));*/
+
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null }),
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
 }));
 
 test('Tela "Home" deve ser renderizada', async () => {

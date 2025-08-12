@@ -15,6 +15,59 @@ jest.mock('../hooks/useCart', () => ({
   }),
 }));
 
+const mockCarousel = [
+  {
+    id: 1,
+    subtitle: 'confira nossa linha',
+    title: 'corporal',
+    description: 'com benefícios além da hidratação',
+    backgroundImage: '/assets/img1.png'
+  },
+  {
+    id: 2,
+    subtitle: 'toda linha',
+    title: 'anti-age',
+    description: 'use o cupom ANTIAGE15',
+    backgroundImage: '/assets/img2.png'
+  },
+  {
+    id: 3,
+    subtitle: '',
+    title: 'kits incríveis',
+    description: 'até 50% OFF',
+    backgroundImage: '/assets/img3.png'
+  }
+];
+
+const mockDoisProdutos = [
+  {
+    id: 1,
+    name: 'Creme Hidratante Facial',
+    description: 'Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.',
+    price: 45.99,
+    image: '/assets/prod1.jpg',
+    tags: [
+      'face',
+      'hydration'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Protetor Solar SPF 50',
+    description: 'Protetor solar de alta proteção contra raios UVA/UVB, resistente à água.',
+    price: 89.90,
+    image: '/assets/prod2.jpg',
+    tags: [
+      'protection',
+      'sun'
+    ]
+  }];
+
+jest.mock('../store/api/apiSlice.ts', () => ({
+  useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null }),
+  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
+}));
+
 function renderComProvedores() {
   const mockStore = criaMockDeStore();
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento

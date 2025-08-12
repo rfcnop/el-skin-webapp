@@ -9,7 +9,7 @@ export default function FooterLink(props: PropsLinkFooter) {
       {
         [
           props.topicos.map(
-            (topico, index) => <LiTopico key={index}>{`- ${topico}`}</LiTopico>
+            (topico, index) => <LinkTopico to={props.link.endereco} key={index}>{`- ${topico}`}</LinkTopico>
           )
         ]
       }
@@ -40,7 +40,7 @@ const UlTopicos = styled.ul`
   list-style-type: none;
 `;
 
-const LiTopico = styled.li`
+const LinkTopico = styled(Link)`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: ${ ({theme}) => theme.fontWeight.normal };
@@ -50,6 +50,8 @@ const LiTopico = styled.li`
 
   color: ${ ({theme}) => theme.cores.texto.quaternaria };
 
+  display: block;
   padding-top: 1px;
   padding-bottom: 2px;
+  text-decoration: none;
 `;

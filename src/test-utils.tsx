@@ -2,18 +2,16 @@ import { render } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import tema from './styles/theme';
 import { configureStore } from '@reduxjs/toolkit';
-import searchSliceReducer from './store/slices/searchSlice';
-import cartSliceReducer from './store/slices/cartSlice';
-import productsSliceReducer from './store/slices/productsSlice';
+import searchSlice from './store/slices/searchSlice';
+import cartSlice from './store/slices/cartSlice';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 export function criaMockDeStore() {
   return configureStore({
     reducer: {
-      search: searchSliceReducer,
-      cart: cartSliceReducer,
-      products: productsSliceReducer
+      [searchSlice.reducerPath]: searchSlice.reducer,
+      [cartSlice.reducerPath]: cartSlice.reducer
     }
   });
 }

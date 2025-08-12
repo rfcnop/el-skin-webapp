@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searchSliceReducer from './slices/searchSlice';
-import cartSliceReducer from './slices/cartSlice';
-import productsSliceReducer from './slices/productsSlice';
+import searchSlice from './slices/searchSlice';
+import cartSlice from './slices/cartSlice';
+import apiSlice from './api/apiSlice';
 
 const store = configureStore({
   reducer: {
-    search: searchSliceReducer,
-    cart: cartSliceReducer,
-    products: productsSliceReducer
-  }
+    [searchSlice.reducerPath]: searchSlice.reducer,
+    [cartSlice.reducerPath]: cartSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer
+  },
+  middleware: getDefaultMiddleWare =>
+    getDefaultMiddleWare().concat(apiSlice.middleware)
 });
 
 export default store;
