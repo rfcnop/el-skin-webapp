@@ -1,15 +1,15 @@
 import PropsLinkFooter from '../types/PropsFooterLink';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export default function FooterLink(props: PropsLinkFooter) {
   return (<div>
-    <LinkFooter to={props.link.endereco}>{props.link.texto}</LinkFooter>
+    <LinkFooter href={props.link.endereco}>{props.link.texto}</LinkFooter>
     <UlTopicos>
       {
         [
           props.topicos.map(
-            (topico, index) => <LinkTopico to={props.link.endereco} key={index}>{`- ${topico}`}</LinkTopico>
+            (topico, index) => <LinkTopico href={props.link.endereco} key={index}>{`- ${topico}`}</LinkTopico>
           )
         ]
       }

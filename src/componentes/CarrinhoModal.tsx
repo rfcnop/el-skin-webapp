@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import styled from 'styled-components';
 import { useCart } from '../hooks/useCart';
@@ -15,7 +15,7 @@ export default function CarrinhoModal() {
   useEffect(() => {
     if (!isLoading)
       setProdutos(products);
-  }, [isLoading, products]);
+  }, [isLoading]); //eslint-disable-line react-hooks/exhaustive-deps
 
   useMemo(() => setValorTotal(
     itensCarrinho.reduce(
@@ -70,7 +70,7 @@ export default function CarrinhoModal() {
       </DivItensCarrinhoModal>
       <DivTotalFinalizar hidden={!itensCarrinho.length}>
         <span>Total: </span><SpanValorTotal>R$ {valorTotal.toFixed(2).replace('.', ',')}</SpanValorTotal>
-        <Link to='/finalizarcompra'>
+        <Link href='/finalizarcompra'>
           <BotaoFinalizarCarrinhoModal onClick={fecharCarrinho}>Finalizar Compra</BotaoFinalizarCarrinhoModal>
         </Link>
       </DivTotalFinalizar>

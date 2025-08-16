@@ -14,13 +14,13 @@ export default function ProductGrid() {
     () => {
       const lowerCaseSearch = search.toLowerCase();
       setProdutosBusca(
-        produtosBusca => products.filter(
+        products.filter(
           produto => produto.name.toLowerCase().includes(lowerCaseSearch) ||
             produto.description.toLowerCase().includes(lowerCaseSearch) ||
             produto.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearch))
         )
       );
-    }, [search, products]
+    }, [search, isLoading] //eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return (<DivShowcase>

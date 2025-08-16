@@ -1,3 +1,5 @@
+'use client';
+
 import Carousel from '../componentes/Carousel';
 import ProductGrid from '../componentes/ProductGrid';
 

@@ -69,7 +69,7 @@ export default function ProductCard({ product } : { product: IProduct }) {
               Comprar
             </DivComprar>
             <div>
-              <ImgSacola src={sacola} alt={'Botão Comprar'} />
+              <ImgSacola src={sacola.src} alt={'Botão Comprar'} />
             </div>
           </ButtonComprar>
         </DivPrecoComprar>

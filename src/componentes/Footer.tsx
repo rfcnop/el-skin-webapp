@@ -1,6 +1,6 @@
 import footerLinks from '../data/footerLinks.json';
 import FooterLink from './FooterLink';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export default function Footer() {
@@ -16,7 +16,7 @@ export default function Footer() {
             {
               [
                 redes_sociais.map(
-                  (rede, index) => <LinkShare to='/share' key={index}>
+                  (rede, index) => <LinkShare href='/share' key={index}>
                     <img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} />
                   </LinkShare>
                 )

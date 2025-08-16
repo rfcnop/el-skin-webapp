@@ -2,7 +2,7 @@
     {
         "link": {
             "texto": "Sobre a AL SKIN",
-            "endereco": "/sobre"
+            "endereco": "/about"
         },
         "topicos": [
             "quem somos",

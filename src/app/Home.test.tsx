@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import Home from './Home';
+import Home from './page';
 import { renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import { criaMockDeStore } from '../test-utils';

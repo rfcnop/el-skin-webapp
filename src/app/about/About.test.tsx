@@ -1,8 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
-import About from './About';
-import { renderComTema } from '../test-utils';
-
+import About from './page';
+import { renderComTema } from '../../test-utils';
 
 test('Tela "Sobre" deve ser renderizada', () => {
   renderComTema(

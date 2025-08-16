@@ -49,8 +49,8 @@ export default function Carousel() {
     { isLoading && <DivCarregando>Carregando o carrossel...</DivCarregando> }
     { error && <DivErro>Erro ao carregar o carrossel: { JSON.stringify(error) } </DivErro> }
     { !isLoading && !error && (<DivCarousel>
-      <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior} alt='Ir para imagem anterior' /></BotaoAnterior>
-      <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo} alt='Ir para imagem posterior' /></BotaoProximo>
+      <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior.src} alt='Ir para imagem anterior' /></BotaoAnterior>
+      <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo.src} alt='Ir para imagem posterior' /></BotaoProximo>
       <DivWrapperCarousel data-testid='div_wrapper_carousel' id='div_wrapper_carousel'>
         {
           [
