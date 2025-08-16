@@ -59,10 +59,5 @@
     "jest-environment-jsdom": "^30.0.5",
     "ts-node": "^10.9.2",
     "typescript-eslint": "^8.37.0"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "axios": "axios/dist/axios.min.js"
-    }
   }
 }

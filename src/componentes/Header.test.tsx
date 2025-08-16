@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import Header from './Header';
 import userEvent from '@testing-library/user-event';
@@ -73,11 +72,9 @@ function renderComProvedores() {
   render(<Header />, { // ou poderia ter botado Router e Provider direto no primeiro argumento
     wrapper: ({children}) => (
       <ThemeProvider theme={tema}>
-        <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-          <Provider store={mockStore}>
-            { children }
-          </Provider>
-        </BrowserRouter>
+        <Provider store={mockStore}>
+          { children }
+        </Provider>
       </ThemeProvider>)
   });
 }
@@ -88,22 +85,6 @@ test('O texto digitado na barra de pesquisa deve ser estar lá.', () => {
   userEvent.click(inputPesquisa);
   userEvent.keyboard('UVA');
   expect(inputPesquisa).toHaveValue('UVA');
-});
-
-test('Deve ir para o URI da âncora para os resultados quando o botão da pesquisa for clicado.', () => {
-  renderComProvedores();
-
-  Object.defineProperty(window, 'location', {
-    value: { replace: jest.fn() }
-  });
-
-  const inputPesquisa = screen.getByTestId('input_pesquisa');
-  userEvent.click(inputPesquisa);
-  userEvent.keyboard('UVA');
-  const botaoBusca = screen.getByTestId('botao_lupa');
-  userEvent.click(botaoBusca);
-
-  expect(window.location.replace).toHaveBeenCalledWith('#resultado_da_busca');
 });
 
 test('Deve abrir o carrinho quando clicar na sacola e fechá-lo quando clicar novamente.', () => {

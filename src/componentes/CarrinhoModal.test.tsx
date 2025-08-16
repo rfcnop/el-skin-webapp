@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 import CarrinhoModal from './CarrinhoModal';
 import userEvent from '@testing-library/user-event';
@@ -36,11 +35,9 @@ jest.mock('../store/api/apiSlice.ts', () => ({
 function renderComProvedores() {
   const mockStore = criaMockDeStore();
   return renderComTema(
-    <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-      <Provider store={mockStore}>
-        <CarrinhoModal />
-      </Provider>
-    </BrowserRouter>);
+    <Provider store={mockStore}>
+      <CarrinhoModal />
+    </Provider>);
 }
 
 test('Deve fechar o carrinho modal usando a tecla ESC', () => {
