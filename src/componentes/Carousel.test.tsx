@@ -39,19 +39,19 @@ const mockCarousel = [
     },
   },
   __esModule: true
-}));*/
+}));
 jest.mock('../store/api/apiSlice.ts', () => ({
   useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null })
-}));
+}));*/
 
 test('Deve carregar os três itens do carrossel.', async () => {
-  await act(async () => await renderComTema(<Carousel />));
+  await act(async () => await renderComTema(<Carousel carouselItems={mockCarousel} />));
   const itensCarrossel = await screen.findAllByTestId('div_item_carousel');
   expect(itensCarrossel).toHaveLength(3);
 });
 
 test('Deve mover o carrossel ao apertar o botão ">".', async () => {
-  await act(async () => await renderComTema(<Carousel />));
+  await act(async () => await renderComTema(<Carousel carouselItems={mockCarousel} />));
   const divWrapperCarousel = await screen.findByTestId('div_wrapper_carousel');
   const posicaoAnterior = divWrapperCarousel.scrollLeft;
   const botaoProximo = await screen.findByTestId('botao_carousel_proximo');
@@ -61,7 +61,7 @@ test('Deve mover o carrossel ao apertar o botão ">".', async () => {
 });
 
 test('Deve mover o carrossel com a passagem do tempo.', async () => {
-  await act(async () => await renderComTema(<Carousel />));
+  await act(async () => await renderComTema(<Carousel carouselItems={mockCarousel} />));
   const divWrapperCarousel = await screen.findByTestId('div_wrapper_carousel');
   const posicaoAnterior = divWrapperCarousel.scrollLeft;
   await act(async () => await new Promise(resolve => setTimeout(resolve, 3500)));

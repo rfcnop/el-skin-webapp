@@ -1,14 +1,15 @@
+'use client';
+
 import imgAnterior from '../assets/carousel/anterior.svg';
 import imgProximo from '../assets/carousel/proximo.svg';
 import { useCallback, useEffect, useState } from 'react';
 import CarouselItem from './CarouselItem';
 import styled from 'styled-components';
-import { useGetCarouselItemsQuery } from '../store/api/apiSlice';
+import ICarouselItem from '../types/ICarouselItem';
 
-export default function Carousel() {
+export default function Carousel({ carouselItems }: { carouselItems: ICarouselItem[] }) {
   const [momentoUltimaMudancaCarrossel, setMomentoUltimaMudancaCarrossel] = useState(Date.now());
   const [scrollTarget, setScrollTarget] = useState(0);
-  const { data: carouselItems = [], isLoading, error} = useGetCarouselItemsQuery();
 
   const carouselMove = useCallback(
     function (forward = true) {
@@ -46,15 +47,14 @@ export default function Carousel() {
     <DivPromocional>
       <SpanPrimeiraCompra>primeira compra?</SpanPrimeiraCompra><SpanReaisOff><b>R$25 OFF</b> A PARTIR DE <b>R$ 200</b></SpanReaisOff><BotaoPrimeira25 >PRIMEIRA25</BotaoPrimeira25>
     </DivPromocional>
-    { isLoading && <DivCarregando>Carregando o carrossel...</DivCarregando> }
-    { error && <DivErro>Erro ao carregar o carrossel: { JSON.stringify(error) } </DivErro> }
-    { !isLoading && !error && (<DivCarousel>
+    { !carouselItems && <DivErro>Erro ao carregar o carrossel.</DivErro> }
+    { carouselItems && (<DivCarousel>
       <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior.src} alt='Ir para imagem anterior' /></BotaoAnterior>
       <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo.src} alt='Ir para imagem posterior' /></BotaoProximo>
       <DivWrapperCarousel data-testid='div_wrapper_carousel' id='div_wrapper_carousel'>
         {
           [
-            carouselItems.map((carouselItem, index) => <CarouselItem key={index} {...carouselItem} />)
+            carouselItems?.map((carouselItem, index) => <CarouselItem key={index} {...carouselItem} />)
           ]
         }
       </DivWrapperCarousel>
@@ -109,22 +109,6 @@ const BotaoPrimeira25 = styled.button`
   cursor: pointer;
 
   color: ${ ({theme}) => theme.cores.texto.secundaria };
-`;
-
-const DivCarregando = styled.div`
-  margin-left: 10%;
-  margin-right: 10%;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: ${ ({theme}) => theme.fontWeight.bold };
-
-  font-size: ${ ({theme}) => theme.tamanhoFonte.grande };
-  line-height: 30px;
-
-  text-align: center;
-  text-transform: lowercase;
-  
-  color: ${ ({theme}) => theme.cores.texto.primaria };
 `;
 
 const DivErro = styled.div`

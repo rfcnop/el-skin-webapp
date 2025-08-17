@@ -10,14 +10,14 @@ import store from '../store';
 import Header from '../componentes/Header';
 import Footer from '../componentes/Footer';
 
-const poppins = Poppins({ //eslint-disable-line @typescript-eslint/no-unused-vars
+const poppins = Poppins({ // eslint-disable-line @typescript-eslint/no-unused-vars
   subsets: ['latin'],
   weight: ['400', '700'],
   style: 'normal',
   display: 'swap'
 });
 
-const shipporiAntique = Shippori_Antique({ //eslint-disable-line @typescript-eslint/no-unused-vars
+const shipporiAntique = Shippori_Antique({ // eslint-disable-line @typescript-eslint/no-unused-vars
   subsets: ['latin'],
   style: 'normal',
   weight: '400',

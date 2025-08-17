@@ -31,10 +31,10 @@ const mockDoisProdutos = [
 /*jest.mock('../services/productService', () => ({
   //...(jest.requireActual('../services/productService')),
   getProdutos: async () => mockDoisProdutos
-}));*/
+}));
 jest.mock('../store/api/apiSlice.ts', () => ({
   useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
-}));
+}));*/
 
 function criarMockStoreComSearch(search: string) {
   return configureStore({
@@ -52,7 +52,7 @@ test('"ProductGrid" deve renderizar dois produtos', async () => {
   const mockStore = criaMockDeStore();
   renderComTema(
     <Provider store={mockStore}>
-      <ProductGrid />
+      <ProductGrid products={mockDoisProdutos} />
     </Provider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(2);
@@ -62,7 +62,7 @@ test('"ProductGrid" deve renderizar somente o produto que menciona UVA', async (
   const storeUVA = criarMockStoreComSearch('UVA');
   renderComTema(
     <Provider store={storeUVA}>
-      <ProductGrid />
+      <ProductGrid products={mockDoisProdutos} />
     </Provider>);
   const divsComprar = await screen.findAllByText('Comprar');
   expect(divsComprar).toHaveLength(1);
@@ -72,7 +72,7 @@ test('"ProductGrid" deve ser renderizado sem produtos, pois nenhum contém magma
   const storeMagma = criarMockStoreComSearch('magma');
   renderComTema(
     <Provider store={storeMagma}>
-      <ProductGrid />
+      <ProductGrid products={mockDoisProdutos} />
     </Provider>);
   const divNenhumProdutoEncontrado = await screen.findByText('Nenhum produto atende aos critérios de busca');
   expect(divNenhumProdutoEncontrado).toBeInTheDocument();

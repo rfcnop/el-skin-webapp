@@ -1,21 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import CarrinhoModalItem from './CarrinhoModalItem';
 import styled from 'styled-components';
 import { useCart } from '../hooks/useCart';
-import { useGetProductsQuery } from '../store/api/apiSlice';
-import IProduct from '../types/IProduct';
+import useProducts from '../hooks/useProducts';
 
 export default function CarrinhoModal() {
   const { itensCarrinho } = useCart();
-  const { data: products = [], isLoading } = useGetProductsQuery();
-  const [produtos, setProdutos] = useState<IProduct[]>([]);
+  const { products: produtos } = useProducts();
   const [valorTotal, setValorTotal] = useState(0);
-
-  useEffect(() => {
-    if (!isLoading)
-      setProdutos(products);
-  }, [isLoading]); //eslint-disable-line react-hooks/exhaustive-deps
 
   useMemo(() => setValorTotal(
     itensCarrinho.reduce(

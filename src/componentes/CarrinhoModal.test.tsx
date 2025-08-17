@@ -28,8 +28,9 @@ const mockDoisProdutos = [
     ]
   }];
 
-jest.mock('../store/api/apiSlice.ts', () => ({
-  useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
+jest.mock('../hooks/useProducts.ts', () => ({
+  default: () => ({ products: mockDoisProdutos }),
+  __esModule: true
 }));
 
 function renderComProvedores() {
