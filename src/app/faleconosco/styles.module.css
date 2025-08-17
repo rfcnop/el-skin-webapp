@@ -132,6 +132,11 @@
   padding-left: 20px;
 }
 
+.img_direita {
+  width: 100%;
+  height: auto;
+}
+
 .div_direita {
   width: 50%;
   margin-left: 1%;

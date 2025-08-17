@@ -1,6 +1,7 @@
 import imgDireita from '../../assets/fale_conosco/imagem_fale_conosco.png';
 import imgEnviar from '../../assets/enviar.svg';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 export default async function FaleConosco() {
   return (<main className={styles.main_fale_conosco}>
@@ -8,24 +9,25 @@ export default async function FaleConosco() {
       <div  className={styles.div_esquerda}>
         <span className={styles.span_titulo}>Fale Conosco:</span>
         <br />
-        <input className={styles.input_fale_conosco} name="nome" type="text" placeholder="Seu nome" />{' '}
+        <input className={styles.input_fale_conosco} name="nome" type="text" placeholder="Seu nome" autoComplete='off' />
         <br />
         <input className={styles.input_fale_conosco}
           name="email"
           type="text"
           placeholder="Seu e-mail para contato"
-        />
+          autoComplete='off' />
         <br />
         <input className={styles.input_fale_conosco}
           name="telefone"
           type="text"
           placeholder="Seu telefone com DDD"
-        />
+          autoComplete='off' />
         <br />
         <input className={styles.input_fale_conosco}
           name="cpf"
           type="text"
-          placeholder="Seu CPF" />
+          placeholder="Seu CPF"
+          autoComplete='off' />
         <br />
         <br />
         <span className={styles.span_texto}>Categoria:</span>
@@ -64,12 +66,12 @@ export default async function FaleConosco() {
         <br />
         <div className={styles.div_botao_enviar}>
           <button className={styles.botao_enviar_mensagem}>
-            Enviar mensagem<img className={styles.img_enviar} src={imgEnviar.src} alt="Enviar" />
+            Enviar mensagem<Image className={styles.img_enviar} src={imgEnviar} alt="Enviar" />
           </button>
         </div>
       </div>
       <div className={styles.div_direita}>
-        <img src={imgDireita.src} alt="Imagem contato" width="100%" />
+        <Image className={styles.img_direita} src={imgDireita} alt="Imagem contato" />
       </div>
     </div>
     <br /><br /><br /><br />

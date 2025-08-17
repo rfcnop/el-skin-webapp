@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import CarouselItem from './CarouselItem';
 import styled from 'styled-components';
 import ICarouselItem from '../types/ICarouselItem';
+import Image from 'next/image';
 
 export default function Carousel({ carouselItems }: { carouselItems: ICarouselItem[] }) {
   const [momentoUltimaMudancaCarrossel, setMomentoUltimaMudancaCarrossel] = useState(Date.now());
@@ -49,8 +50,8 @@ export default function Carousel({ carouselItems }: { carouselItems: ICarouselIt
     </DivPromocional>
     { !carouselItems && <DivErro>Erro ao carregar o carrossel.</DivErro> }
     { carouselItems && (<DivCarousel>
-      <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><img src={imgAnterior.src} alt='Ir para imagem anterior' /></BotaoAnterior>
-      <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><img src={imgProximo.src} alt='Ir para imagem posterior' /></BotaoProximo>
+      <BotaoAnterior onClick={e => {e.stopPropagation(); carouselMove(false);}}><Image width='40' height='40' src={imgAnterior} alt='Ir para imagem anterior' /></BotaoAnterior>
+      <BotaoProximo data-testid='botao_carousel_proximo' onClick={e => {e.stopPropagation(); carouselMove(true);}}><Image width='40' height='40' src={imgProximo} alt='Ir para imagem posterior' /></BotaoProximo>
       <DivWrapperCarousel data-testid='div_wrapper_carousel' id='div_wrapper_carousel'>
         {
           [
