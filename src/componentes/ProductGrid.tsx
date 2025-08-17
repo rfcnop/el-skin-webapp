@@ -1,38 +1,44 @@
+'use client';
+
 import ProductCard from './ProductCard';
 import styled from 'styled-components';
 import useSearch from '../hooks/useSearch';
-import { useGetProductsQuery } from '../store/api/apiSlice';
 import { useEffect, useState } from 'react';
 import IProduct from '../types/IProduct';
+import useProducts from '../hooks/useProducts';
 
-export default function ProductGrid() {
+export default function ProductGrid({ products }: { products : IProduct[] }) {
   const [produtosBusca, setProdutosBusca] = useState<IProduct[]>([]);
-  const { data: products = [], isLoading, error } = useGetProductsQuery();
   const { search } = useSearch();
+  const { setProducts } = useProducts();
 
+  useEffect (
+    () => {
+      setProducts(products);
+    }, [products, setProducts]);
+  
   useEffect(
     () => {
       const lowerCaseSearch = search.toLowerCase();
       setProdutosBusca(
-        produtosBusca => products.filter(
+        products.filter(
           produto => produto.name.toLowerCase().includes(lowerCaseSearch) ||
             produto.description.toLowerCase().includes(lowerCaseSearch) ||
             produto.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearch))
         )
       );
-    }, [search, products]
+    }, [search] //eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return (<DivShowcase>
     <br />
     <DivTituloShowcase id='resultado_da_busca'>
-      { isLoading && 'Carregando produtos...' }
-      { error && (<DivErro>Erro ao carregar produtos: { JSON.stringify(error) } </DivErro>) }
-      { !isLoading && !error && (produtosBusca.length ? 'nossos queridinhos estão aqui' : 'Nenhum produto atende aos critérios de busca') }
+      { !products && (<DivErro>Erro ao carregar produtos.</DivErro>) }
+      { products && (produtosBusca.length ? 'nossos queridinhos estão aqui' : 'Nenhum produto atende aos critérios de busca') }
     </DivTituloShowcase>
     <br />
     <br />
-    { !isLoading && !error && (<DivListaDeProdutos>
+    { products && (<DivListaDeProdutos>
       {
         [
           produtosBusca.map(

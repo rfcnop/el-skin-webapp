@@ -1,0 +1,149 @@
+.main_fale_conosco{
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-left: 1%;
+  padding-right: 1%;
+  background-color: #FFF;
+}
+
+.div_superior {
+  display: flex;
+  padding-top: 20px;
+}
+
+.div_esquerda {
+  width: 50%;
+  margin-right: 1%
+}
+
+.span_titulo {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.input_fale_conosco {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  background: #F5F5F5;
+  border-radius: 8px;
+  border: none;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #878787;
+
+  margin-top: 10px;
+  padding-left: 15px;
+  height: 47px;
+  width: 90%;
+}
+
+.span_texto {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #222222;
+}
+
+.div_checks {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #222222;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check_fale_conosco {
+  box-sizing: border-box;
+  border: 1px solid #878787;
+}
+
+.label_checks {
+  padding-right: 15px;
+  padding-left: 5px;
+}
+
+.text_area {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  background: #F5F5F5;
+  border-radius: 8px;
+  border: none;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #878787;
+
+  margin-top: 10px;
+  padding-left: 15px;
+  height: 47px;
+  width: 90%;
+  padding-top: 10px;
+  resize: none;
+
+  height: 140px;
+}
+
+.div_botao_enviar {
+  display: flex;
+}
+
+.botao_enviar_mensagem {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  background: #94426E;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  justify-content: center;
+  width: 91%;
+
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #FFF;
+}
+
+.img_enviar {
+  padding-left: 20px;
+}
+
+.div_direita {
+  width: 50%;
+  margin-left: 1%;
+}
+
+.div_texto {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #222222;
+}

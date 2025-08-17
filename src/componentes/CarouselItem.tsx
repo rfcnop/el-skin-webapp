@@ -12,7 +12,7 @@ export default function CarouselItem(props: ICarouselItem) {
           <DivSubtituloCarousel>{props.subtitle}</DivSubtituloCarousel>
           <DivTituloCarousel>{props.title}</DivTituloCarousel>
           <DivUseOCupom>{props.description}</DivUseOCupom>
-          <BotaoComprarCarousel>comprar agora<ImagemGo src={imgEnviar} alt="Ir Comprar" /></BotaoComprarCarousel>
+          <BotaoComprarCarousel>comprar agora<ImagemGo src={imgEnviar.src} alt="Ir Comprar" /></BotaoComprarCarousel>
         </DivInfoNaImagem>
       </DivImagemCarousel>
     </DivItemCarousel>

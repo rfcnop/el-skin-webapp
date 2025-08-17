@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import Home from './Home';
+import Home from './page';
 import { renderComTema } from '../test-utils';
 import { Provider } from 'react-redux';
 import { criaMockDeStore } from '../test-utils';
@@ -69,19 +69,30 @@ const mockDoisProdutos = [
 /*jest.mock('../services/productService', () => ({
   //...(jest.requireActual('../services/productService')),
   getProdutos: async () => mockDoisProdutos
-}));*/
-
+}));
 jest.mock('../store/api/apiSlice.ts', () => ({
   useGetCarouselItemsQuery: () => ({ data: mockCarousel, isLoading: false, error: null }),
   useGetProductsQuery: () => ({ data: mockDoisProdutos, isLoading: false, error: null })
-}));
+}));*/
+
+global.fetch = (url) => Promise.resolve({
+  json: () =>
+  {
+    if (url.toString().endsWith('products/'))
+      return Promise.resolve(mockDoisProdutos);
+    else if (url.toString().endsWith('carousel/'))
+      return Promise.resolve(mockCarousel);
+    else
+      return Promise.resolve('Requisição para URL desconhecida');
+  }
+} as Response);
 
 test('Tela "Home" deve ser renderizada', async () => {
   const mockStore = criaMockDeStore();
 
   await act(async () => await renderComTema(
     <Provider store={mockStore}>
-      <Home />
+      { await Home() }
     </Provider>));
   expect(await screen.findByTestId('main_home')).toBeInTheDocument();
 });

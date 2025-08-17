@@ -1,10 +1,10 @@
 import lupa from '../assets/lupa.svg';
 import sacola from '../assets/sacola.svg';
-import { Link } from 'react-router-dom';
 import CarrinhoModal from './CarrinhoModal';
 import styled from 'styled-components';
 import useSearch from '../hooks/useSearch';
 import { useCart } from '../hooks/useCart';
+import Link from 'next/link';
 
 export default function Header() {
   const { search, setSearch } = useSearch();
@@ -46,7 +46,7 @@ export default function Header() {
       <CarrinhoModal />
       <DivHeader>
         <DivBarraSuperior>
-          <LinkLogo to=''>
+          <LinkLogo href='/'>
             AL SKIN
           </LinkLogo>
           <FormBarraDePesquisa onSubmit={onClickSearch}>
@@ -60,14 +60,14 @@ export default function Header() {
             </DivInput>
             <DivLupa>
               <BotaoLupa data-testid='botao_lupa' type='submit'>
-                <img src={lupa} alt="Sacola" />
+                <img src={lupa.src} alt="Sacola" />
               </BotaoLupa>
             </DivLupa>
           </FormBarraDePesquisa>
           <DivSacola>
             <div>
               <BotaoSacola data-testid='botao_sacola' onClick={onClickBotaoCarrinho}>
-                <img src={sacola} alt="Sacola" />
+                <img src={sacola.src} alt="Sacola" />
               </BotaoSacola>
               <SpanSacola data-testid='span_texto_quantidade_carrinho'>{
                 itensCarrinho.length ?

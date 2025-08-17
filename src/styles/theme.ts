@@ -40,7 +40,7 @@ const tema = {
 type Tema = typeof tema;
 
 declare module 'styled-components' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   export interface DefaultTheme extends Tema {}
 }
 

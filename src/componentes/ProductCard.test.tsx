@@ -77,6 +77,6 @@ test('Deve adicionar produto ao carrinho quando o botão for clicado', () => {
     
   const botaoComprar = screen.getByTestId('botao_comprar');
   userEvent.click(botaoComprar);
-  expect(addProduct).toBeCalledWith(produto.id);
-  expect(addProduct).toBeCalledTimes(1);
+  expect(addProduct).toHaveBeenCalledWith(produto.id);
+  expect(addProduct).toHaveBeenCalledTimes(1);
 });
