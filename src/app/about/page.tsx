@@ -5,7 +5,7 @@ import imagemFaleConosco from '../../assets/sobre/fale_conosco.svg';
 import Link from 'next/link';
 import styles from './styles.module.css';
 
-export default function About() {
+export default async function About() {
   return (
     <main className={styles.main_sobre}>
       <div className={styles.div_top_sobre}>

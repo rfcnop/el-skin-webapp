@@ -2,7 +2,7 @@ import imgDireita from '../../assets/fale_conosco/imagem_fale_conosco.png';
 import imgEnviar from '../../assets/enviar.svg';
 import styles from './styles.module.css';
 
-export default function FaleConosco() {
+export default async function FaleConosco() {
   return (<main className={styles.main_fale_conosco}>
     <div className={styles.div_superior}>
       <div  className={styles.div_esquerda}>
