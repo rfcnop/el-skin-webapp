@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import footerLinks from '../data/footerLinks.json';
 import FooterLink from './FooterLink';
 import Link from 'next/link';
@@ -17,7 +18,7 @@ export default function Footer() {
               [
                 redes_sociais.map(
                   (rede, index) => <LinkShare href='/share' key={index}>
-                    <img src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} />
+                    <Image width='40' height='40' src={`/assets/share/${rede}.svg`} alt={`Compartilhar na Rede ${rede}`} />
                   </LinkShare>
                 )
               ]

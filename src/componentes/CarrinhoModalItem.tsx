@@ -3,6 +3,7 @@ import IProduct from '../types/IProduct';
 import IItemCarrinho from '../types/IItemCarrinho';
 import styled from 'styled-components';
 import { useCart } from '../hooks/useCart';
+import Image from 'next/image';
 
 export default function CarrinhoModalItem({produto, itemCarrinho} : {produto: IProduct, itemCarrinho: IItemCarrinho}) {
   const { removeProduct, updateQuantidade } = useCart();
@@ -10,7 +11,7 @@ export default function CarrinhoModalItem({produto, itemCarrinho} : {produto: IP
   return (
     <DivItemCarrinhoModal>
       <DivImagemItemCarrinhoModal>
-        <ImagemItemCarrinho src={produto?.image} alt={produto?.name} />
+        <ImagemItemCarrinho width='0' height='0' sizes='100vw' src={produto?.image} alt={produto?.name} />
       </DivImagemItemCarrinhoModal>
       <DivInfoItemCarrinhoModal>
         <SpanNegrito>{produto?.name}</SpanNegrito><br />
@@ -40,8 +41,9 @@ const DivImagemItemCarrinhoModal = styled.div`
   align-content: center;
 `;
 
-const ImagemItemCarrinho = styled.img`
+const ImagemItemCarrinho = styled(Image)`
   width: 100%;
+  height: auto;
 `;
 
 const DivInfoItemCarrinhoModal = styled.div`

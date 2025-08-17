@@ -4,6 +4,7 @@ import imagemRight from '../../assets/sobre/imagem_sobre_right.png';
 import imagemFaleConosco from '../../assets/sobre/fale_conosco.svg';
 import Link from 'next/link';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 export default async function About() {
   return (
@@ -24,10 +25,10 @@ export default async function About() {
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.<br />
           </div>
           <br />
-          <img className={styles.img_dente} src={imagemLeft.src} alt='Conta-gotas' />
+          <Image className={styles.img_dente} src={imagemLeft} alt='Conta-gotas' />
         </div>
         <div className={styles.div_right}>
-          <img className={styles.img_bisnaga} src={imagemRight.src} alt='Bisnaga de plástico' />
+          <Image className={styles.img_bisnaga} src={imagemRight} alt='Bisnaga de plástico' />
           <div className={styles.div_textao}>
             <br />
             <br />
@@ -38,11 +39,11 @@ export default async function About() {
             <br />
           </div>
           <div className={styles.div_link_fale_conosco}>
-            <Link className={styles.link_fale_conosco} href='/faleconosco'><img src={imagemFaleConosco.src} alt='Fale conosco' /><div className={styles.texto_fale_conosco}>Fale conosco</div></Link>
+            <Link className={styles.link_fale_conosco} href='/faleconosco'><Image src={imagemFaleConosco} alt='Fale conosco' /><div className={styles.texto_fale_conosco}>Fale conosco</div></Link>
           </div>
         </div>
       </div>
-      <img className={styles.img_dente} src={imagemBottom.src} alt='Caiu meu dente' />
+      <Image className={styles.img_dente} src={imagemBottom} alt='Caiu meu dente' />
     </main>
   );
 }

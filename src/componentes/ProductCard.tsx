@@ -2,6 +2,7 @@ import IProduct from '../types/IProduct';
 import sacola from '../assets/sacola.svg';
 import styled from 'styled-components';
 import { useCart } from '../hooks/useCart';
+import Image from 'next/image';
 
 function corDaTag(tag: string) {
   switch (tag) {
@@ -46,7 +47,7 @@ export default function ProductCard({ product } : { product: IProduct }) {
   return (
     <DivCardExterno>
       <DivCardInterno>
-        <ImgProduto src={product.image} alt={`imagem de ${product.name}`} />
+        <ImgProduto width='0' height='0' sizes='100vw' src={product.image} alt={`imagem de ${product.name}`} />
         <DivAlturaTextoCard>
           <DivNome>{product.name}</DivNome>
           <DivDescricao>{product.description}</DivDescricao>
@@ -69,7 +70,7 @@ export default function ProductCard({ product } : { product: IProduct }) {
               Comprar
             </DivComprar>
             <div>
-              <ImgSacola src={sacola.src} alt={'Botão Comprar'} />
+              <ImgSacola width='23' height='23' src={sacola} alt={'Botão Comprar'} />
             </div>
           </ButtonComprar>
         </DivPrecoComprar>
@@ -90,8 +91,9 @@ const DivAlturaTextoCard = styled.div`
   height: 140px;
 `;
 
-const ImgProduto = styled.img`
+const ImgProduto = styled(Image)`
   width: 100%;
+  height: auto;
   border-radius: ${ ({theme}) => theme.borderRadius.medio };
 `;
 
@@ -179,7 +181,7 @@ const DivComprar = styled.div`
   padding-right: 5px;
 `;
 
-const ImgSacola = styled.img`
+const ImgSacola = styled(Image)`
   margin-top: 3px;
   float: right;
 `;

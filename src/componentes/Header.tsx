@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import useSearch from '../hooks/useSearch';
 import { useCart } from '../hooks/useCart';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const { search, setSearch } = useSearch();
@@ -56,18 +57,19 @@ export default function Header() {
                 placeholder="O que você está procurando?"
                 value={search}
                 onChange={handleOnChange}
+                id='caixa_de_pesquisa'
               />
             </DivInput>
             <DivLupa>
               <BotaoLupa data-testid='botao_lupa' type='submit'>
-                <img src={lupa.src} alt="Sacola" />
+                <Image width='23' height='23' src={lupa} alt="Sacola" />
               </BotaoLupa>
             </DivLupa>
           </FormBarraDePesquisa>
           <DivSacola>
             <div>
               <BotaoSacola data-testid='botao_sacola' onClick={onClickBotaoCarrinho}>
-                <img src={sacola.src} alt="Sacola" />
+                <Image width='23' height='23' src={sacola} alt="Sacola" />
               </BotaoSacola>
               <SpanSacola data-testid='span_texto_quantidade_carrinho'>{
                 itensCarrinho.length ?

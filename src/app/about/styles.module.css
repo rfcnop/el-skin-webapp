@@ -49,12 +49,14 @@
   width: 100%;
   max-width: 500px;
   padding-right: 1%;
+  height: auto;
 }
 
 .img_bisnaga {
   width: 100%;
   padding-left: 1%;
   max-width: 572px;
+  height: auto;
 }
 
 .link_fale_conosco {
@@ -84,4 +86,5 @@
 
 .img_dente {
   width: 100%;
+  height: auto;
 }

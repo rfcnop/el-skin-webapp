@@ -1,6 +1,7 @@
 import ICarouselItem from '../types/ICarouselItem';
 import imgEnviar from '../assets/enviar.svg';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export default function CarouselItem(props: ICarouselItem) {
   return (
@@ -12,7 +13,7 @@ export default function CarouselItem(props: ICarouselItem) {
           <DivSubtituloCarousel>{props.subtitle}</DivSubtituloCarousel>
           <DivTituloCarousel>{props.title}</DivTituloCarousel>
           <DivUseOCupom>{props.description}</DivUseOCupom>
-          <BotaoComprarCarousel>comprar agora<ImagemGo src={imgEnviar.src} alt="Ir Comprar" /></BotaoComprarCarousel>
+          <BotaoComprarCarousel>comprar agora<ImagemGo width='0' height='0' sizes='100vw' src={imgEnviar} alt="Ir Comprar" /></BotaoComprarCarousel>
         </DivInfoNaImagem>
       </DivImagemCarousel>
     </DivItemCarousel>
@@ -109,6 +110,8 @@ const BotaoComprarCarousel = styled.button`
   align-items: center;
 `;
 
-const ImagemGo = styled.img`
+const ImagemGo = styled(Image)`
   padding-left: 5px;
+  width: 30px;
+  height: auto;
 `;
